@@ -1,0 +1,1 @@
+display("Fais un QCM à la main comme tout le monde (et arrête de perdre les copies)")
