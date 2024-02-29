@@ -4,13 +4,49 @@ mots = ["jgjvdsjsv","hdsv","ceradlassopas","gvsd","psojf","jv","ghgcgj"]
 memoire = None
 
 
+def formatage_fichier(nom_fichier):
+    
+    global memoire
+    with open(nom_fichier, "r") as fichier:
+        contenu = fichier.read()
+        #print(contenu)
+    
+    symbole = '$'
+    insymbole = False
+    instruction = ''
+    newcontenu = ''
+    for i in contenu:
+        if i == symbole:
+            insymbole = not(insymbole)
+            if insymbole:
+                instruction = ''
+            if insymbole == False:
+                #print(instruction)
+                try:
+                    exec(instruction)
+                except NameError:
+                    print("   ʌ \n  / \\ \n / | \\ \n/__•__\\")
+                    print("Une instruction entre '$' n'est pas correcte!\n")
+                #print(a)
+                newcontenu += str(memoire) 
+                memoire = None
+        else:
+            if insymbole:
+                instruction += i
+            else:
+                newcontenu += i
+        
+    with open("test_texte_fin.txt", "w") as fichier:
+        fichier.write(newcontenu)
+        print(newcontenu)
+
+
 def gen_bool():
     global memoire
     memoire = choice((True,False))
 
 
 def gen_int(min = 1, max = 10, pas = 1):
-
     assert isinstance(min,int) and isinstance(max,int) and isinstance(pas,int) , ""
     assert min < max , ""
     assert pas >= 0 , ""
