@@ -17,7 +17,7 @@ def generate_question(indice,programme,question,solution,faux):
     \end{question}
   }
   '''
-  reponses = [r"\bonne{" + reponse + "}"] + [r"\mauvaise{" + elt+ "}" for elt in faux][:3]
+  reponses = [r"\bonne{" + reponse + "}"] + [r"\mauvaise{" + elt+ "}" for elt in faux[:3]]
   shuffle(reponses)
   return Template(enonce).render(indice = indice,programme = programme,question = question,reponses = reponses)
 indice = 1
