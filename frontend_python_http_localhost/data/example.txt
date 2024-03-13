@@ -1,0 +1,29 @@
+pythonA
+numbers = list(range(1, 11))
+even_numbers = []
+odd_numbers = []
+
+for number in numbers:
+    if number % 2 == 0:
+        even_numbers.append(number)
+    else:
+        odd_numbers.append(number)
+
+print("Even numbers:", even_numbers)
+print("Odd numbers:", odd_numbers)
+
+total_even = sum(even_numbers)
+total_odd = sum(odd_numbers)
+
+print("Total of even numbers:", total_even)
+print("Total of odd numbers:", total_odd)
+
+count = 0
+while count < 5:
+    print("Count is:", count)
+    count += 1
+
+for i in range(1, 4):
+    for j in range(1, 4):
+        if i == j:
+            print(f"Match found at {i},{j}")
