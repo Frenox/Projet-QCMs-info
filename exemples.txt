@@ -1,0 +1,15 @@
+python3
+
+a = $int()$
+b = 5
+    
+for i in range(1, $int(2, 5)$):
+    print(a*b) 
+
+----------------------------------------------------
+python2
+
+a = $int(5, 8)$
+b = 'Lorem Ipsum'
+    
+print(b[:a])
