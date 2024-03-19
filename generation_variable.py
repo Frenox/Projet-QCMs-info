@@ -1,6 +1,6 @@
 from random import *
 
-mots = ["jgjvdsjsv","hdsv","ceradlassopas","gvsd","psojf","jv","ghgcgj"]
+mots = ["cerradlassopas","sopa","legume", "abeille", "agneau", "aile", "ane", "arbre", "bain", "barque", "bassin", "bebe", "bec", "bete", "boeuf", "botte de foin", "boue", "bouquet", "bourgeon", "branche", "caillou", "campagne", "car", "champ", "chariot", "chat", "cheminee", "cheval", "chevre", "chien", "cochon", "colline", "coq", "coquelicot", "crapaud", "cygne", "depart", "dindon", "escargot", "etang", "ferme", "fermier", "feuille", "flamme", "fleur", "fontaine", "fumee", "grain", "graine", "grenouille", "griffe", "guepe", "herbe", "herisson", "insecte", "jardin", "mare", "marguerite", "miel", "morceau de pain", "mouche", "mouton", "oie", "oiseau", "pierre", "pigeon", "plante", "plume", "poney", "poule", "poussin", "prairie", "rat", "riviere", "route", "tortue", "tracteur", "tulipe", "vache", "veterinaire", "Landry"]
 memoire = None
 
 
@@ -44,6 +44,7 @@ def formatage_fichier(nom_fichier):
 def gen_bool():
     global memoire
     memoire = choice((True,False))
+    return memoire
 
 
 def gen_int(min = 1, max = 10, pas = 1):
@@ -53,6 +54,7 @@ def gen_int(min = 1, max = 10, pas = 1):
 
     global memoire
     memoire = choice(range(min,max,pas))
+    return memoire
 
 
 def gen_str(liste_mots = mots):
@@ -62,6 +64,7 @@ def gen_str(liste_mots = mots):
 
     global memoire
     memoire = choice(liste_mots)
+    return memoire
 
 
 def gen_liste_int(taille = 5, valeur_max = 100, repetition = False, tri = False):
@@ -82,11 +85,13 @@ def gen_liste_int(taille = 5, valeur_max = 100, repetition = False, tri = False)
     
     global memoire
     memoire = liste
+    return memoire
 
 
 def gen_tuple_int(taille = 6, valeur_max = 100, repetition = False, tri = False):
     global memoire
     memoire = tuple(gen_liste_int(taille, valeur_max, repetition, tri))
+    return memoire
 
 
 def gen_dict(taille = 6, valeur_max = 100, repetition = False, keys = mots):
@@ -102,5 +107,7 @@ def gen_dict(taille = 6, valeur_max = 100, repetition = False, keys = mots):
 
     global memoire
     memoire = dict
+    return memoire
 
 
+print(gen_dict())
