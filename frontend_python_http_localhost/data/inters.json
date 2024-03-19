@@ -1,0 +1,5 @@
+{
+    "pythonA": ["python3", ".py"],
+    "pythonB": ["python", ".py"],
+    "c++": ["g++", ".cpp"]
+}
