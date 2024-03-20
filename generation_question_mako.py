@@ -1,13 +1,13 @@
 from mako.template import Template
 from random import * 
 def generate_question(programme,question,reponses,extension):
-  if extension == "AMC":
+  if extension == "amc":
     enonce = r'''
       \begin{question}{question}
         ${question} 
         ##la question
 
-    \inputminted[firstline=1, lastline=5]{python}{${programme}}
+    ${programme}
 
         \begin{reponseshoriz}
         % for elt in reponses:
@@ -19,13 +19,13 @@ def generate_question(programme,question,reponses,extension):
   elif extension == "moodle":
     enonce = r'''
     \begin{multi}{${question}}
-    Programme
+    ${programme}
     % for elt in reponses:
           ${elt}
           % endfor
   \end{multi} 
     '''
-  if extension == "AMC":
+  if extension == "amc":
     reponses_format= [r"\bonne{" + reponses[0] + "}"] + [r"\mauvaise{" + elt+ "}" for elt in reponses[1:4]]
   elif extension == "moodle":
     reponses_format = [r"\item*"+ reponses[0]] + [r"\item" + elt for elt in reponses[1:4]]
