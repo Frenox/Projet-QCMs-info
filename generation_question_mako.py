@@ -1,25 +1,36 @@
 from mako.template import Template
 from random import * 
-def generate_question(indice,programme,question,reponses):
-  enonce = r'''
-  \element{categorie${indice}}{
-    \begin{question}{cat${indice}-quest${indice}}\bareme{formula=NBC-0.5*NMC} 
-      ${question} 
-      ##la question
+def generate_question(programme,question,reponses,extension):
+  if extension == "AMC":
+    enonce = r'''
+      \begin{question}{question}
+        ${question} 
+        ##la question
 
-  \inputminted[firstline=1, lastline=5]{python}{${programme}}
+    \inputminted[firstline=1, lastline=5]{python}{${programme}}
 
-      \begin{reponseshoriz}
-      % for elt in reponses:
-        ${elt}
-        % endfor
-      \end{reponseshoriz} 
-    \end{question}
-  }
-  '''
-  reponses = [r"\bonne{" + reponses[0] + "}"] + [r"\mauvaise{" + elt+ "}" for elt in reponses[1:4]]
-  shuffle(reponses)
-  return Template(enonce).render(indice = indice,programme = programme,question = question,reponses = reponses)
+        \begin{reponseshoriz}
+        % for elt in reponses:
+          ${elt}
+          % endfor
+        \end{reponseshoriz} 
+      \end{question}
+    '''
+  elif extension == "moodle":
+    enonce = r'''
+    \begin{multi}{${question}}
+    Programme
+    % for elt in reponses:
+          ${elt}
+          % endfor
+  \end{multi} 
+    '''
+  if extension == "AMC":
+    reponses_format= [r"\bonne{" + reponses[0] + "}"] + [r"\mauvaise{" + elt+ "}" for elt in reponses[1:4]]
+  elif extension == "moodle":
+    reponses_format = [r"\item*"+ reponses[0]] + [r"\item" + elt for elt in reponses[1:4]]
+  shuffle(reponses_format)
+  return Template(enonce).render(programme = programme,question = question,reponses = reponses_format)
 indice = 1
 programme = "test1.py"
 question = "Que renvoie ce programme ?"
@@ -28,4 +39,4 @@ solution = "3"
 faux = ["1","2","4"]
 """
 reponses = ["3","1","2","4"] #la bonne réponse est la première dans la liste
-print(generate_question(indice,programme,question,reponses))
+print(generate_question(programme,question,reponses,"AMC"))
