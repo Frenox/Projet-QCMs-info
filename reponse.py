@@ -5,6 +5,7 @@ def rep(execution,path_reponse):
 
     with open(path_reponse,"r") as fichier_reponses_prof:
         reponses_prof = fichier_reponses_prof.readlines()
+        reponses_prof = [el.replace("\n", "") for el in reponses_prof]
 
     for e in execution:
         reponse = [e]

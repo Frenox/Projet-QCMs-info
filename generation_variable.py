@@ -38,7 +38,7 @@ def formatage_fichier(nom_fichier):
         
     with open("test_texte_fin.txt", "w") as fichier:
         fichier.write(newcontenu)
-        print(newcontenu)
+        return newcontenu
 
 
 def gen_bool():

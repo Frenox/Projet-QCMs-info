@@ -10,9 +10,6 @@ def execution(script, langue):
     
     result = subprocess.run(commande, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
     
-    return result.stdout
+    return result.stdout.splitlines()
 
 # Exemple d'utilisation avec un script Python simple
-stdout = execution("print('hello world')\nprint('2')", ["python", ".py"])
-
-print(stdout)

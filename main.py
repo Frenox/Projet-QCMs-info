@@ -2,22 +2,34 @@ from os import *
 from generation_variable import *
 from donneesJSON import *
 from generation_question_mako import generate_question
+from execution_avec_subproces import execution
+from reponse import rep
 
-def execution():
+def main():
     splashScreen()
     outputType = askOutputType()
     codeLanguage = askLanguage()
     filePath = askFilePath("a executer")
     answerPath = askFilePath("contenant les appels de la fonction")
     codeFile = formatage_fichier(filePath)
+    fileReturn = execution(codeFile, codeLanguage)
+    answerLists = rep(fileReturn, answerPath)
 
-    ##generate_question(1, "fichier.py", "Que renvoie ce programme?", reponses)
+    questionsString = []
+    for answers in answerLists:
+        questionsString.append(generate_question("fichier.py", "Que renvoie ce programme?", answers, outputType))
+    
+    return questionsString
 
 def splashScreen():
     print("----------------------------------------------------------------------")
-    print("                    Bienvenue sur QCM Generator                       ")
-    print("\n\n")
-    print("                       -By Cerrad las sopas-                          ")
+    print("|                                                                    |")
+    print("|                   Bienvenue sur QCM Generator                      |")
+    print("|                                                                    |")
+    print("|                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                    |")
+    print("|                      -By Cerrad las sopas-                         |")
+    print("|                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                    |")
+    print("|                                                                    |")
     print("----------------------------------------------------------------------")
     print()
 
@@ -52,4 +64,4 @@ def askLanguage():
         print("Ce n'est pas une option valide")
         return askLanguage()
 
-execution()
+print(main())

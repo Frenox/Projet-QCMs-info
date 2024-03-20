@@ -1,5 +1,0 @@
-a = $gen_int()$
-b = 5
-    
-for i in range(1, $gen_int(2, 5)$):
-    print(a*b) 
