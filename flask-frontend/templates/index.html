@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projet QCMs S4</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Générateur de QCMs 
+      </h1>
+      <p class="subtitle">
+        Outil de génération de QCMs pour formats <strong>AMC/Moodle</strong>.
+      </p>
+      <div class="columns">
+        <div class="column">
+            <div class="box">
+                <nav class="level">
+                    <div class="level-left">
+                      <h1 class="title is-4">Code Source</h1>
+                    </div>
+                    <div class="level-right">
+                      <span class="icon is-medium">
+                        <i class="fas fa-2x fa-file-code"></i>
+                      </span>
+                    </div>
+                  </nav>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <div class="block">
+                        <div class="file">
+                            <label class="file-label">
+                            <input class="file-input" type="file" name="resume">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                Choisir un fichier...
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="control">
+                        <label class="radio">
+                        <input type="radio" name="rsvp" checked>
+                        AMC
+                        </label>
+                        <label class="radio">
+                        <input type="radio" name="rsvp">
+                        Moodle
+                        </label>
+                        <label class="radio" disabled>
+                        <input type="radio" name="rsvp" disabled>
+                        Other
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+        <div class="column">
+            <div class="box">
+                <nav class="level">
+                  <div class="level-left">
+                    <h1 class="title is-4">Fichier réponses</h1>
+                  </div>
+                  <div class="level-right">
+                    <span class="icon is-medium">
+                      <i class="fas fa-2x fa-tasks"></i>
+                    </span>
+                  </div>
+                </nav>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <div class="block">
+                        <div class="file">
+                          <label class="file-label">
+                            <input class="file-input" type="file" name="resume">
+                            <span class="file-cta">
+                              <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                Choisir un fichier...
+                              </span>
+                            </span>
+                          </label>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="control">
+                        <div class="select">
+                          <select>
+                            <option>Selecitonner un format</option>
+                            <option>Java</option>
+                            <option>Python</option>
+                            <option>C++</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-primary">Générer QCM</button>
+      </div>
+    </div>
+  </section>
+  </body>
+</html>

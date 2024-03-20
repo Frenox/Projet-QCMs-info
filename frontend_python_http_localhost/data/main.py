@@ -1,1 +1,0 @@
-display("Projets QCMs-info")
