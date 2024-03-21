@@ -1,0 +1,8 @@
+\begin{multi}
+      {Que renvoie ce programme?}
+      fichier.py
+            \item*15
+            \item40
+            \item946
+            \item4
+    \end{multi}

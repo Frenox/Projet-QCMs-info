@@ -4,7 +4,7 @@ import uuid
 
 def execution_docker(code, language):
     client = docker.from_env()
-    nom_langage, extension = language
+    nom_langage, extension, *args  = language
     fichier = "fichier_test" + extension
     volume_path = "/app"
     docker_image = ""

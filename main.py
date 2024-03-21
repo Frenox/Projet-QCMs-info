@@ -10,7 +10,7 @@ from reponse import rep
 def main(outputType, codeLanguage, filePath, answerPath, questionType):
     codeFile = formatage_fichier(filePath)
     languageData = getLanguageData(codeLanguage)
-    fileReturn = execution(codeFile, languageData)
+    fileReturn = execution_docker(codeFile, languageData)
     answerLists = rep(fileReturn, answerPath)
 
     for i in range(len(answerLists)):
@@ -32,4 +32,4 @@ if __name__ == "__main__":
         answerPath = sys.argv[4]
         main(outputType, codeLanguage, filePath, answerPath)
     else:
-        main("moodle", "pythonA", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\codeFile.txt", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\answersFile.txt", "multi")
+        main("moodle", "pythonA", r"C:\Users\walid\OneDrive\Documents\GitHub\Projet-QCMs-info\codeFile.txt", r"C:\Users\walid\OneDrive\Documents\GitHub\Projet-QCMs-info\answersFile.txt", "multi")
