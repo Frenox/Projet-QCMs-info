@@ -1,5 +1,5 @@
 {
-    "pythonA": ["python3", ".py"],
-    "pythonB": ["python", ".py"],
-    "c++": ["g++", ".cpp"]
+    "pythonA": ["python3", ".py", "Interprete"],
+    "pythonB": ["python", ".py", "Interprete"],
+    "c++": ["g++", ".cpp", "Compile"]
 }
