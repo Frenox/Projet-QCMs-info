@@ -6,6 +6,7 @@ from generation_variable import *
 from donneesJSON import *
 from generation_question_mako import generate_question
 from execution_avec_subproces import execution
+from Execution_docker import execution_docker
 from reponse import rep
 
 app = Flask(__name__)
@@ -21,9 +22,9 @@ def process_qcm():
         answerPath = request.files['answer_file'].filename
         outputType = request.form['output_type']
         codeLanguage = request.form.get('format_select')
-
+    
         codeFile = formatage_fichier(filePath)
-        fileReturn = execution(codeFile, codeLanguage)
+        fileReturn = execution_docker(codeFile, codeLanguage)
         answerLists = rep(fileReturn, answerPath)
 
         questionsString = []
@@ -31,5 +32,5 @@ def process_qcm():
             questionsString.append(generate_question("fichier.py", "Que renvoie ce programme?", answers, outputType))
     
         return questionsString
-                
-        #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
+    
+    #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
