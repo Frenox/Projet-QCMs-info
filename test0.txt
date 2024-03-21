@@ -3,6 +3,6 @@
       fichier.py
             \item*25
             \item40
+            \item7
             \item4
-            \item15
     \end{multi}
