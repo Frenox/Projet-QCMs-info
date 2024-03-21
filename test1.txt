@@ -2,7 +2,7 @@
       {Que renvoie ce programme?}
       fichier.py
             \item*40
-            \item25
-            \item2
+            \item4
             \item15
+            \item25
     \end{multi}
