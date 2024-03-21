@@ -13,7 +13,7 @@ parser.add_argument('outputType', type=str)
 parser.add_argument('codeLanguage', type=str)
 parser.add_argument('filePath', type=str)
 parser.add_argument('answerPath', type=str)
-parser.add_argument('--GUIMode', type=str)
+parser.add_argument('--GUIMode', type=str, help='argument optionnel pour la version GUI')
 
 args = parser.parse_args()
 
