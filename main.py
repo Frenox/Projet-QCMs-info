@@ -8,7 +8,8 @@ from reponse import rep
 
 def main(outputType, codeLanguage, filePath, answerPath):
     codeFile = formatage_fichier(filePath)
-    fileReturn = execution(codeFile, codeLanguage)
+    languageData = getLanguageData(codeLanguage)
+    fileReturn = execution(codeFile, languageData)
     answerLists = rep(fileReturn, answerPath)
 
     questionsString = []
@@ -16,6 +17,10 @@ def main(outputType, codeLanguage, filePath, answerPath):
         questionsString.append(generate_question("fichier.py", "Que renvoie ce programme?", answers, outputType))
     
     return questionsString
+
+
+def getLanguageData(language):
+    return getKnownLanguages()[language]
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
