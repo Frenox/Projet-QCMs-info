@@ -108,6 +108,3 @@ def gen_dict(taille = 6, valeur_max = 100, repetition = False, keys = mots):
     global memoire
     memoire = dict
     return memoire
-
-
-print(gen_dict())
