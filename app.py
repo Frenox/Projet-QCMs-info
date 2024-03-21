@@ -1,12 +1,11 @@
 from flask import Flask
 from flask import request, render_template
 
-from os import *
 from generation_variable import *
 from donneesJSON import *
+from Execution_docker import *
 from generation_question_mako import generate_question
 from execution_avec_subproces import execution
-from Execution_docker import execution_docker
 from reponse import rep
 
 app = Flask(__name__)
@@ -18,22 +17,20 @@ def home():
 @app.route('/process_qcm', methods=['POST'])
 def process_qcm():
     if request.method == 'POST':
-        filePath = request.files['source_file'].filename
-        answerPath = request.files['answer_file'].filename
         outputType = request.form['output_type']
         codeLanguage = request.form.get('format_select')
+        filePath = request.files['source_file'].filename
+        answerPath = request.files['answer_file'].filename
     
         codeFile = formatage_fichier(filePath)
-        
         languageData = getLanguageData(codeLanguage)
         fileReturn = execution_docker(codeFile, languageData)
         answerLists = rep(fileReturn, answerPath)
 
-        questionsString = []
-        for answers in answerLists:
-            questionsString.append(generate_question("fichier.py", "Que renvoie ce programme?", answers, outputType))
-    
-        return questionsString
+        for i in range(len(answerLists)):
+            questions = ''
+            questions += generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
+            return(questions)
     
     #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
 

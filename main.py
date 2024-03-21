@@ -13,6 +13,7 @@ parser.add_argument('outputType', type=str)
 parser.add_argument('codeLanguage', type=str)
 parser.add_argument('filePath', type=str)
 parser.add_argument('answerPath', type=str)
+parser.add_argument('--GUIMode', type=str)
 
 args = parser.parse_args()
 
@@ -24,10 +25,12 @@ def main(outputType, codeLanguage, filePath, answerPath, questionType):
 
     for i in range(len(answerLists)):
         question = generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, questionType)
-
-        with open(f'test{i}.txt', 'w') as f:
-            f.write(question)
-            f.close()
+        if args.GUIMode:
+            return(question)
+        else:
+            with open(f'test{i}.txt', 'w') as f:
+                f.write(question)
+                f.close()
 
 
 def getLanguageData(language):
