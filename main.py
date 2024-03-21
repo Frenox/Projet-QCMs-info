@@ -7,14 +7,14 @@ from generation_question_mako import generate_question
 from execution_avec_subproces import execution
 from reponse import rep
 
-def main(outputType, codeLanguage, filePath, answerPath):
+def main(outputType, codeLanguage, filePath, answerPath, questionType):
     codeFile = formatage_fichier(filePath)
     languageData = getLanguageData(codeLanguage)
     fileReturn = execution(codeFile, languageData)
     answerLists = rep(fileReturn, answerPath)
 
     for i in range(len(answerLists)):
-        question = generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType)
+        question = generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, questionType)
 
         with open(f'test{i}.txt', 'w') as f:
             f.write(question)
@@ -32,4 +32,4 @@ if __name__ == "__main__":
         answerPath = sys.argv[4]
         main(outputType, codeLanguage, filePath, answerPath)
     else:
-        main("moodle", "pythonA", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\codeFile.txt", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\answersFile.txt")
+        main("moodle", "pythonA", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\codeFile.txt", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\answersFile.txt", "multi")
