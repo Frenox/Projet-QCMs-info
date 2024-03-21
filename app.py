@@ -24,7 +24,9 @@ def process_qcm():
         codeLanguage = request.form.get('format_select')
     
         codeFile = formatage_fichier(filePath)
-        fileReturn = execution_docker(codeFile, codeLanguage)
+        
+        languageData = getLanguageData(codeLanguage)
+        fileReturn = execution_docker(codeFile, languageData)
         answerLists = rep(fileReturn, answerPath)
 
         questionsString = []
@@ -34,3 +36,6 @@ def process_qcm():
         return questionsString
     
     #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
+
+def getLanguageData(language):
+    return getKnownLanguages()[language]
