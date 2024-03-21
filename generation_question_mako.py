@@ -39,3 +39,4 @@ solution = "3"
 faux = ["1","2","4"]
 """
 reponses = ["3","1","2","4"] #la bonne réponse est la première dans la liste
+##print(generate_question(programme,question,reponses,"AMC"))
