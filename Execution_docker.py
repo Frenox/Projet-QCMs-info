@@ -43,7 +43,7 @@ def execution_docker(code, language):
         # Suppression du fichier de code après exécution
         os.remove(fichier)
         # Suppression du conteneur
-        container.remove(force=True)
+        #container.remove(force=True)
 
     return logs.decode('utf-8').splitlines()
 
