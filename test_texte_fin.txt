@@ -3,3 +3,5 @@ def test(a):
     print(a*b) 
 
 test(5)
+test(8)
+test(3)

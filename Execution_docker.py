@@ -2,9 +2,8 @@ import docker
 import os
 import uuid
 
-client = docker.from_env()
-
 def execution_docker(code, language):
+    client = docker.from_env()
     nom_langage, extension = language
     fichier = "fichier_test" + extension
     volume_path = "/app"
@@ -57,5 +56,5 @@ int main() {
 }
 """
 
-logs = execution_docker(code_cpp, ["cpp", ".cpp"])
-print(logs)
+#logs = execution_docker(code_cpp, ["cpp", ".cpp"])
+#print(logs)
