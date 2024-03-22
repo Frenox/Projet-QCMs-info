@@ -1,8 +1,8 @@
 \begin{multi}
       {Que renvoie ce programme?}
       fichier.py
-            \item*25
+            \item*/app/fichier_test.cpp:1:1: error: 'def' does not name a type
             \item7
-            \item946
-            \item15
+            \item4
+            \item25
     \end{multi}

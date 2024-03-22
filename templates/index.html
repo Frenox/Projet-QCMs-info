@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html data-theme="light" lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projet QCMs S4</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-      const fileInputs = document.querySelectorAll('.file-input');
-
-      fileInputs.forEach(function(input) {
-        input.addEventListener('change', function() {
-          const fileDisplay = input.closest('.file').querySelector('.file-name');
-          const fileName = input.files.length > 0 ? input.files[0].name : "No file uploaded…";
-          fileDisplay.textContent = fileName;
-        });
-      });
-      });
-    </script>    
+    <script src="{{ url_for('static', filename='javascript.js') }}"></script>  
   </head>
   <body>
+  <div class="container" style="padding-top: 10px;">
+    <div class="notification is-info">
+      <button class="delete"></button>
+      <strong>Chargez votre QCM :</strong> Sélectionnez et téléchargez votre fichier de questions en cliquant sur "Choisir un fichier..." sous "Code Source".
+      <strong>Téléversez les Réponses (facultatif) :</strong> Si nécessaire, chargez également le fichier de réponses.
+      <strong>Générez :</strong> Choisissez le format de votre QCM et cliquez sur "Générer QCM".
+    </div>
+  </div>
   <section class="section">
     <div class="container">
       <h1 class="title">
@@ -58,7 +54,7 @@
                                   Choisir un fichier...
                                   </span>
                               </span>
-                              <span class="file-name"></span>
+                              <span class="file-name"> Aucun fichier... </span>
                               </label>
                           </div>
                         </div>
@@ -110,7 +106,7 @@
                                   Choisir un fichier...
                                 </span>
                               </span>
-                              <span class="file-name"></span>
+                              <span class="file-name"> Aucun fichier... </span>
                             </label>
                         </div>
                         </div>
@@ -123,6 +119,20 @@
                               <option>pythonA</option>
                               <option>pythonB</option>
                               <option>c++</option>
+                              <option>java</option>
+                              <option>go</option>
+                              <option>rust</option>
+                              <option>php</option>
+                              <option>ruby</option>
+                              <option>kotlin</option>
+                              <option>javascript</option>
+                              <option>swift</option>
+                              <option>perl</option>
+                              <option>lua</option>
+                              <option>haskell</option>
+                              <option>elixir</option>
+                              <option>scala</option>
+                              <option>dart</option>
                             </select>
                           </div>
                         </div>
@@ -133,9 +143,14 @@
           </div>
         </div>
         <div class="control">
-          <button class="button is-primary">Générer QCM</button>
+          <button class="button is-primary" id="generateButton">Générer QCM</button>
         </div>
       </form>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <progress class="progress is-small is-primary" id="loadBar" max="100" style="display: none;">15%</progress>
     </div>
   </section>
   </body>

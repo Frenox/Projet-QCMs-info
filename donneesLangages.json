@@ -1,5 +1,21 @@
 {
     "pythonA": ["python3", ".py", "Interprete", "python:3.8"],
-    "pythonB": ["python", ".py", "Interprete", "python:2.7"],
-    "c++": ["g++", ".cpp", "Compile", "gcc:latest"]
+    "pythonB": ["python2", ".py", "Interprete", "python:2.7"],
+    "c++": ["cpp", ".cpp", "Compile", "gcc:latest"],
+    "c": ["c", ".c", "Compile", "gcc:latest"],
+    "java": ["java", ".java", "Compile", "openjdk:latest"],
+    "go": ["go", ".go", "Compile", "golang:latest"],
+    "rust": ["rustc", ".rs", "Compile", "rust:latest"],
+    "php": ["php", ".php", "Compile", "php:latest"],
+    "ruby": ["ruby", ".rb", "Compile", "ruby:latest"],
+    "kotlin": ["kotlinc", ".kt", "Compile", "kotlin:latest"],
+    "javascript": ["node", ".js", "Compile", "node:latest"],
+    "swift": ["swift", ".swift", "Compile", "swift:latest"],
+    "perl": ["perl", ".pl", "Compile", "perl:latest"],
+    "lua": ["lua", ".lua", "Compile", "lua:latest"],
+    "haskell": ["ghc", ".hs", "Compile", "haskell:latest"],
+    "elixir": ["elixir", ".ex", "Compile", "elixir:latest"],
+    "scala": ["scala", ".scala", "Compile", "scala:latest"],
+    "dart": ["dart", ".dart", "Compile", "dart:latest"],
+    "r": ["R", ".R", "Compile", "r:latest"]
 }

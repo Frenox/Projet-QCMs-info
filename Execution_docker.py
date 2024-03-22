@@ -30,6 +30,18 @@ def execution_docker(code, language):
     elif nom_langage == "javascript":
         docker_image = "node:latest"
         command = f"node {volume_path}/{fichier}"
+    elif nom_langage == "ruby":
+        docker_image = "ruby:latest"
+        command = f"ruby {volume_path}/{fichier}"
+    elif nom_langage == "php":
+        docker_image = "php:latest"
+        command = f"php {volume_path}/{fichier}"
+    elif nom_langage == "go":
+        docker_image = "golang:latest"
+        command = f"go run {volume_path}/{fichier}"
+    elif nom_langage == "rust":
+        docker_image = "rust:latest"
+        command = f"cargo run {volume_path}/{fichier}"
 
     # Écriture du fichier
     with open(fichier, "w") as file:
