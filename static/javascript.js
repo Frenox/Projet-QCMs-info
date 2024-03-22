@@ -6,8 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInputs.forEach(function(input) {
     input.addEventListener('change', function() {
         const fileDisplay = input.closest('.file').querySelector('.file-name');
-        const fileName = input.files.length > 0 ? input.files[0].name : "Aucun fichier…";
-        fileDisplay.textContent = fileName;
+        if (input.files.length > 0) {
+            const fileName = input.files[0].name
+            generateButton.removeAttribute('disabled');
+            fileDisplay.textContent = fileName;
+        }
+        else {
+            generateButton.setAttribute('disabled');
+            const fileName = 'Aucun fichier...';
+            fileDisplay.textContent = fileName;
+        }
+        
     });
     }); 
     
@@ -16,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (generateButton) {
         generateButton.onclick = function() {
         loadBar.style.display = 'block';
-        generateButton.className = 'button is-loading';
+        generateButton.className = 'button is-primary is-loading';
         };
     }
 
