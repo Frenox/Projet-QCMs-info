@@ -35,5 +35,4 @@ document.addEventListener('DOMContentLoaded', function() {
     $notification.parentNode.removeChild($notification);
     });
     });
-
 });

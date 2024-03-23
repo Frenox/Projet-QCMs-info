@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import request, render_template
+from flask import Flask, request, render_template, send_from_directory
 
 from generation_variable import *
 from donneesJSON import *
@@ -8,11 +7,22 @@ from generation_question_mako import generate_question
 from execution_avec_subproces import execution
 from reponse import rep
 
+
 app = Flask(__name__)
+
+
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    # Chemin vers le fichier JSON dans le répertoire data
+    json_path = os.path.join(app.root_path, 'data', 'donneesLangages.json')
+    with open(json_path, 'r') as json_file:
+        langages_data = json.load(json_file)
+    
+    # Passer les noms des langages au template index.html
+    return render_template('index.html', langages=langages_data.keys())
+
+
 
 @app.route('/process_qcm', methods=['POST'])
 def process_qcm():

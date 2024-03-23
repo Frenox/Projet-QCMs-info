@@ -4,4 +4,6 @@
     "c": [".c", "gcc:latest", "/bin/bash -c 'gcc /app/{filename} -o /app/{filename}.out && /app/{filename}.out'"],
     "c++": [".cpp", "gcc:latest", "/bin/bash -c 'g++ /app/{filename} -o /app/{filename}.out && /app/{filename}.out'"],
     "java": [".java", "openjdk:latest", "/bin/bash -c 'javac /app/{filename} && java -cp /app Main'"]
+    
+
 }

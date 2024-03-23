@@ -115,24 +115,9 @@
                         <div class="control">
                           <div class="select">
                             <select name="format_select">
-                              <option>Selecitonner un format</option>
-                              <option>pythonA</option>
-                              <option>pythonB</option>
-                              <option>c++</option>
-                              <option>java</option>
-                              <option>go</option>
-                              <option>rust</option>
-                              <option>php</option>
-                              <option>ruby</option>
-                              <option>kotlin</option>
-                              <option>javascript</option>
-                              <option>swift</option>
-                              <option>perl</option>
-                              <option>lua</option>
-                              <option>haskell</option>
-                              <option>elixir</option>
-                              <option>scala</option>
-                              <option>dart</option>
+                              {% for langage in langages %}
+                                <option value="{{ langage }}">{{ langage }}</option>
+                              {% endfor %}
                             </select>
                           </div>
                         </div>
