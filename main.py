@@ -19,7 +19,7 @@ args = parser.parse_args()
 
 def main(outputType, codeLanguage, filePath, answerPath, questionType):
     codeFile = formatage_fichier(filePath)
-    languageData = getLanguageData(codeLanguage)
+    languageData = codeLanguage
     fileReturn = execution_docker(codeFile, languageData)
     answerLists = rep(fileReturn, answerPath)
 

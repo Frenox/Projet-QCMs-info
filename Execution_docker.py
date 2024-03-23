@@ -1,73 +1,39 @@
 import docker
 import os
-import uuid
+import tempfile
+from donneesJSON import *
 
-def execution_docker(code, language):
-    client = docker.from_env()
-    
-    nom_langage, extension, *args  = language
-    fichier = "fichier_test" + extension
-    volume_path = "/app"
-    docker_image = ""
-    command = ""
+# Configuration des langages avec modèle de commande inclus
+lang_config = getKnownLanguages()
 
-    if nom_langage == "python3":
-        docker_image = "python:3.8"
-        command = f"python {volume_path}/{fichier}"
-    elif nom_langage == "python2":
-        docker_image = "python:2.7"
-        command = f"python {volume_path}/{fichier}"
-    elif nom_langage == "c":
-        docker_image = "gcc:latest"
-        command = f"/bin/bash -c 'gcc {volume_path}/{fichier} -o {volume_path}/{fichier}.out && {volume_path}/{fichier}.out'"
-    elif nom_langage == "cpp":
-        docker_image = "gcc:latest"
-        command = f"/bin/bash -c 'g++ {volume_path}/{fichier} -o {volume_path}/{fichier}.out && {volume_path}/{fichier}.out'"
-    elif nom_langage == "java":
-        docker_image = "openjdk:latest"
-        class_name = "Main"
-        command = f"/bin/bash -c 'javac {volume_path}/{fichier} && java -cp {volume_path} {class_name}'"
-    elif nom_langage == "javascript":
-        docker_image = "node:latest"
-        command = f"node {volume_path}/{fichier}"
-    elif nom_langage == "ruby":
-        docker_image = "ruby:latest"
-        command = f"ruby {volume_path}/{fichier}"
-    elif nom_langage == "php":
-        docker_image = "php:latest"
-        command = f"php {volume_path}/{fichier}"
-    elif nom_langage == "go":
-        docker_image = "golang:latest"
-        command = f"go run {volume_path}/{fichier}"
-    elif nom_langage == "rust":
-        docker_image = "rust:latest"
-        command = f"cargo run {volume_path}/{fichier}"
+def execution_docker(code, language_key):
+    if language_key not in lang_config:
+        raise ValueError("Langage non configuré")
 
-    # Écriture du fichier
-    with open(fichier, "w") as file:
-        file.write(code)
+    extension, docker_image, command_template = lang_config[language_key]
+    filename = f"fichier_test{extension}"
 
-    try:
-        # Exécution du code dans un conteneur Docker
-        container = client.containers.run(docker_image, command, volumes={f"{os.getcwd()}": {'bind': volume_path, 'mode': 'rw'}}, working_dir=volume_path, detach=True, stdout=True, stderr=True)
-        response = container.wait()  # Attendre que le conteneur ait terminé
-        logs = container.logs(stdout=True, stderr=True)
-    finally:
-        # Suppression du fichier de code après exécution
-        os.remove(fichier)
-        # Suppression du conteneur
-        container.remove(force=True)
+    with tempfile.TemporaryDirectory() as tempdir:
+        filepath = os.path.join(tempdir, filename)
+        with open(filepath, "w") as file:
+            file.write(code)
 
-    return logs.decode('utf-8').splitlines()
+        volume_path = "/app"
+        command = command_template.format(filename=filename)
 
-code_cpp = """
-#include <iostream>
+        client = docker.from_env()
+        logs = ""
+        try:
+            container = client.containers.run(
+                docker_image, command,
+                volumes={tempdir: {'bind': volume_path, 'mode': 'rw'}},
+                working_dir=volume_path, detach=True,
+                stdout=True, stderr=True
+            )
+            container.wait()
+            logs = container.logs(stdout=True, stderr=True).decode('utf-8')
+        finally:
+            if 'container' in locals():
+                container.remove(force=True)
 
-int main() {
-    std::cout << "Hello from C++" << std::endl;
-    return 0;
-}
-"""
-
-#logs = execution_docker(code_cpp, ["cpp", ".cpp"])
-#print(logs)
+    return logs.splitlines()

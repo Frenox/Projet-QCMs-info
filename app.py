@@ -24,7 +24,7 @@ def process_qcm():
     
         codeFile = formatage_fichier(filePath)
         languageData = getLanguageData(codeLanguage)
-        fileReturn = execution_docker(codeFile, languageData)
+        fileReturn = execution_docker(codeFile, codeLanguage)
         answerLists = rep(fileReturn, answerPath)
 
         for i in range(len(answerLists)):
