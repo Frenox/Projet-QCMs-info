@@ -14,13 +14,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    # Chemin vers le fichier JSON dans le répertoire data
-    json_path = os.path.join(app.root_path, 'data', 'donneesLangages.json')
-    with open(json_path, 'r') as json_file:
-        langages_data = json.load(json_file)
-    
     # Passer les noms des langages au template index.html
-    return render_template('index.html', langages=langages_data.keys())
+    return render_template('index.html', langages=getKnownLanguages().keys())
 
 
 
