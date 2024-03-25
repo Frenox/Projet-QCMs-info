@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 dataType: 'json',
                 success: function(response) {
                     $('#result').html('Result: ' + response.result);
+                    loadBar.style.display = 'none';
+                    generateButton.className = 'button is-primary';
                 },
                 error: function(error) {
                     console.log('Error:', error);
