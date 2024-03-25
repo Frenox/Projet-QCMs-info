@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory, jsonify
+from flask import Flask, request, render_template, send_from_directory,jsonify
 
 from generation_variable import *
 from donneesJSON import *
@@ -32,12 +32,10 @@ def process_qcm():
         fileReturn = execution_docker(codeFile, codeLanguage)
         answerLists = rep(fileReturn, answerPath)
 
+        questions = []
         for i in range(len(answerLists)):
-            questions = ''
-            questions += generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
-            return jsonify({'result': questions})
+            questions.append(generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, 'multi'))
+        return jsonify({'result': render_template('qcm-result.html', qcmList=questions)}) 
     
-    #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
-
 def getLanguageData(language):
     return getKnownLanguages()[language]

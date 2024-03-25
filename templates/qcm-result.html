@@ -1,0 +1,8 @@
+{% for item in qcmList %}
+    <div class="cell">
+        <p class="title is-4">
+        Latex pour question {{ loop.index }}: 
+        </p>
+        <p><code> {{ item }} </code></p>
+    </div>
+{% endfor %}

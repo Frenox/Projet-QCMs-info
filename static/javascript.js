@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const generateButton = document.getElementById('generateButton');
     const loadBar = document.getElementById('loadBar');
+    const result = document.getElementById('result');
     if (generateButton) {
         generateButton.onclick = function() {
         loadBar.style.display = 'block';
@@ -48,8 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 contentType: false,
                 dataType: 'json',
                 success: function(response) {
-                    $('#result').html('Result: ' + response.result);
+                    $('#resultGrid').html(response.result);
                     loadBar.style.display = 'none';
+                    result.style.display = 'block';
                     generateButton.className = 'button is-primary';
                 },
                 error: function(error) {
