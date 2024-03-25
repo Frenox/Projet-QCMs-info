@@ -3,6 +3,20 @@
         <p class="title is-4">
         Latex pour question {{ loop.index }}: 
         </p>
-        <p><code> {{ item }} </code></p>
+        <p>
+            <code> {{ item }} </code>
+            <button class="button is-small is-rounded copy-btn" style="margin-top: 5px;">  
+                <span class="icon">
+                    <i class="fas fa-copy"></i>
+                </span>
+                <span>Copier</span>
+            </button>
+            <button class="button is-small is-rounded download-btn" style="margin-top: 5px;" disabled>  
+                <span class="icon">
+                    <i class="fas fa-download"></i>
+                </span>
+                <span>Télécharger</span>
+            </button>
+        </p>
     </div>
 {% endfor %}

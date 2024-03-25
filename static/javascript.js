@@ -53,6 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadBar.style.display = 'none';
                     result.style.display = 'block';
                     generateButton.className = 'button is-primary';
+                    document.querySelectorAll('.copy-btn').forEach(function(button) {
+                        button.addEventListener('click', function() {
+                          var code = this.previousElementSibling.textContent;
+                          navigator.clipboard.writeText(code).then(function() {
+                            console.log('Copying to clipboard was successful!');
+                          }, function(err) {
+                            console.error('Could not copy text: ', err);
+                          });
+                        });
+                    });
                 },
                 error: function(error) {
                     console.log('Error:', error);
@@ -60,4 +70,5 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+    
 });
