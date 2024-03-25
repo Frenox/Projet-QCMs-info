@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, jsonify
 
 from generation_variable import *
 from donneesJSON import *
@@ -35,7 +35,7 @@ def process_qcm():
         for i in range(len(answerLists)):
             questions = ''
             questions += generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
-            return(questions)
+            return jsonify({'result': questions})
     
     #return f"Qcm généré avec succès! Type de QCM : {outputType}. Format : {codeLanguage}. Fichier source : {filePath}. Fichier reponse : {answerPath}"
 

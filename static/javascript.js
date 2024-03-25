@@ -35,4 +35,25 @@ document.addEventListener('DOMContentLoaded', function() {
     $notification.parentNode.removeChild($notification);
     });
     });
+
+    $(document).ready(function() {
+        $('#qcmForm').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: '/process_qcm',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    $('#result').html('Result: ' + response.result);
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
 });

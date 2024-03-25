@@ -6,7 +6,8 @@
     <title>Projet QCMs S4</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="{{ url_for('static', filename='javascript.js') }}"></script>  
+    <script src="{{ url_for('static', filename='javascript.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
   <div class="container" style="padding-top: 10px;">
@@ -25,7 +26,7 @@
       <p class="subtitle">
         Outil de génération de QCMs pour formats <strong>AMC/Moodle</strong>.
       </p>
-      <form action="/process_qcm" method="POST" enctype="multipart/form-data">
+      <form id="qcmForm" action="/process_qcm" method="post" enctype="multipart/form-data">
         <div class="columns">
           <div class="column">
               <div class="box">
@@ -137,6 +138,7 @@
     <div class="container">
       <progress class="progress is-small is-primary" id="loadBar" max="100" style="display: none;">15%</progress>
     </div>
+    <div id="result"></div>
   </section>
   </body>
 </html>
