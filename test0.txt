@@ -1,8 +1,0 @@
-\begin{multi}
-      {Que renvoie ce programme?}
-      fichier.py
-            \item*/app/fichier_test.cpp:1:1: error: 'def' does not name a type
-            \item7
-            \item4
-            \item25
-    \end{multi}

@@ -1,12 +1,12 @@
 import docker
 import os
 import tempfile
-from donneesJSON import *
+
 
 # Configuration des langages avec modèle de commande inclus
-lang_config = getKnownLanguages()
 
-def execution_docker(code, language_key):
+
+def execution_docker(code, language_key, lang_config):
     if language_key not in lang_config:
         raise ValueError("Langage non configuré")
 

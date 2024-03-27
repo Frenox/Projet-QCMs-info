@@ -1,8 +1,0 @@
-\begin{multi}
-      {Que renvoie ce programme?}
-      fichier.py
-            \item*      | ^~~
-            \item4
-            \item7
-            \item946
-    \end{multi}
