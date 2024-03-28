@@ -35,11 +35,24 @@ def generate_question(programme,question,reponses,typeOutput,typeMinted,typeQues
       reponses_format = [r"\item" + elt for elt in reponses]
   #shuffle(reponses_format)
   return Template(enonce).render(programme = programme,question = question,reponses = reponses_format,langage = typeMinted )
+
+def generate_categorie(nom,liste_questions):
+  code = r'''\element{${nom}}{
+  % for elt in questions:
+  ${elt}
+  % endfor
+  }
+    '''
+  return Template(code).render(nom = nom,questions = liste_questions )
+
+
 """
 indice = 1
 programme = "test1.py"
 question = "Que renvoie ce programme ?"
 reponses = ["3","1","2","4"] #la bonne réponse est la première dans la liste
 reponse2= ["3"]
-print(generate_question(programme,question,reponse2,"moodle","short"))
+question1 = generate_question(programme,question,reponse2,"amc","python")
+question2 = generate_question(programme,question,reponse2,"amc","python")
+print(generate_categorie("cat",[question1,question2]))
 """
