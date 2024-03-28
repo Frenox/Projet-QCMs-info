@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory,jsonify
+from flask import Flask, request, render_template, jsonify
 
 from modules.data import *
 from modules.execution import *
@@ -19,19 +19,46 @@ def process_qcm():
     if request.method == 'POST':
         outputType = request.form['output_type']
         codeLanguage = request.form.get('format_select')
-        filePath = request.files['source_file'].filename
-        answerPath = request.files['answer_file'].filename
+        files = []
+        temp_files_paths = []
+        source_file = request.files['source_file']
+        execution_file = request.files['calls_file']
+        answer_file = request.files['answer_file']
+        files.extend(source_file, execution_file, answer_file)
     
-        codeFile = formatage_fichier(filePath)
-        fileReturn = execution_docker(codeFile, codeLanguage, getKnownLanguages())
-        answerLists = rep(fileReturn, answerPath)
-        questions = []
-        for i in range(len(answerLists)):
-            questions.append(generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, 'multi'))
-        return jsonify({'result': render_template('qcm-result.html', qcmList=questions)}) 
-    
-def getLanguageData(language):
-    return getKnownLanguages()[language]
+        try:
+            for file in files:
+                temp_file = tempfile.NamedTemporaryFile(delete=False)
+                file.save(temp_file.name)
+                temp_files_paths.append(temp_file.name)
+            
+            languageData = getKnownLanguages()[codeLanguage]
+            codeFile = formatage_fichier(temp_files_paths[0])
+
+            with open(temp_files_paths[1], "r") as execFile:
+                executionFile = execFile.read()
+                globalFile = codeFile + "\n" + executionFile 
+
+                fileReturn = execution_docker(globalFile, languageData)
+                answerLists = rep(fileReturn, temp_files_paths[2])
+
+                questions = []
+                for i in range(len(answerLists)):
+                    question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
+                    questions.append(question)
+                    with open(f'Outputs/test{i}.txt', 'w') as f:
+                        f.write(question)
+                        f.close()
+                with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
+                    f.write(codeFile)
+                    f.close()
+                execFile.close()
+                return jsonify({'result': render_template('qcm-result.html', qcmList=questions)})
+        finally:
+            for path in temp_files_paths:
+                os.remove(path)
+
+       
 
 if __name__ == "__main__":
     app.run(debug=True)
