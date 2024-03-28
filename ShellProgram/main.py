@@ -32,9 +32,9 @@ def main(outputType, codeLanguage, filePath, executionPath, answerPath, question
             if args.GUIMode:
                 return(question)
             else:
-            with open(f'Outputs/test{i}.txt', 'w') as f:
-                f.write(question)
-                f.close()
+                with open(f'Outputs/test{i}.txt', 'w') as f:
+                    f.write(question)
+                    f.close()
         with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
                 f.write(codeFile)
                 f.close()
