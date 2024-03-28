@@ -5,11 +5,8 @@ import tempfile
 
 
 
-def execution_docker(code, language_key, lang_config):
-    if language_key not in lang_config:
-        raise ValueError("Langage non configuré")
-
-    extension, docker_image, command_template,_ = lang_config[language_key]
+def execution_docker(code, languageData):
+    extension, docker_image, command_template = languageData
     filename = f"fichier_test{extension}"
 
     with tempfile.TemporaryDirectory() as tempdir:
