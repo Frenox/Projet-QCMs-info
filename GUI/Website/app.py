@@ -53,7 +53,7 @@ def process_qcm():
                     f.write(codeFile)
                     f.close()
                 execFile.close()
-                return jsonify({'result': render_template('qcm-result.html', qcmList=questions)})
+                return jsonify({'result': render_template('qcm-result.html', qcmList=questions, fileList = files)})
         finally:
             for path in temp_files_paths:
                 os.remove(path)
