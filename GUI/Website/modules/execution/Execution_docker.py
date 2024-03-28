@@ -6,7 +6,7 @@ import tempfile
 # Configuration des langages avec modèle de commande inclus
 
 
-def execution_docker(code, language_key, lang_config):
+def execution_docker(code, language_key, lang_config,_):
     if language_key not in lang_config:
         raise ValueError("Langage non configuré")
 
