@@ -6,14 +6,14 @@ from modules.generation import *
 import argparse
 
 
-"""parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument('outputType', type=str)
 parser.add_argument('codeLanguage', type=str)
 parser.add_argument('filePath', type=str)
 parser.add_argument('executionPath', type=str)
 parser.add_argument('answerPath', type=str)
 
-args = parser.parse_args()"""
+args = parser.parse_args()
 
 def main(outputType, codeLanguage, filePath, executionPath, answerPath, questionType):
     languageData = getKnownLanguages()[codeLanguage]
@@ -41,5 +41,4 @@ def main(outputType, codeLanguage, filePath, executionPath, answerPath, question
     execFile.close()
 
 
-main("amc", "python3", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\ShellProgram\tests_files\Codefiles\codeFile.txt", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\ShellProgram\tests_files\executionFiles\executionFile.txt", r"C:\Users\maxim\Desktop\INP\2A\Projet\Projet-QCMs-info\ShellProgram\tests_files\answerFile\answersFile.txt", "multi")
-##main(args.outputType, args.codeLanguage, args.filePath, args.answerPath, 'multi')
+main(args.outputType, args.codeLanguage, args.filePath, args.answerPath, 'multi')
