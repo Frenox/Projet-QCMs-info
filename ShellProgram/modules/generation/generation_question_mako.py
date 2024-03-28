@@ -6,7 +6,6 @@ def generate_question(programme,question,reponses,typeOutput,typeMinted,typeQues
       \begin{question}{question}
         ${question} 
         \inputminted[firstline=1, lastline=5]{${langage}}{${programme}}
-        % endif
       \begin{reponseshoriz}
         % for elt in reponses:
           ${elt}
