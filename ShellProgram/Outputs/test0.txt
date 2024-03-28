@@ -1,0 +1,12 @@
+
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        fichier.py
+      \begin{reponseshoriz}
+          \bonne{25}
+          \mauvaise{2}
+          \mauvaise{946}
+          \mauvaise{40}
+        \end{reponseshoriz} 
+      \end{question}
+    
