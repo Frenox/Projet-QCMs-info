@@ -16,26 +16,26 @@ parser.add_argument('answerPath', type=str)
 args = parser.parse_args()
 
 def main(outputType, codeLanguage, filePath, executionPath, answerPath, questionType):
-    languageData = getKnownLanguages()[codeLanguage] ## Recupere les donnees associees au langage demande
-    codeFile = formatage_fichier(filePath) ## Remplace les balises par du code dans le fichier donne
+    languageData = getKnownLanguages()[codeLanguage]
+    codeFile = formatage_fichier(filePath)
 
     with open(executionPath, "r") as execFile:
         executionFile = execFile.read()
-        globalFile = codeFile + "\n" + executionFile ## Cree le fichier global contenant le code et les appels a executer
+        globalFile = codeFile + "\n" + executionFile 
 
-        fileReturn = execution_docker(globalFile, languageData[:3]) ## Execute le fichier sur docker (supprime le 4eme element de la liste s'il existe (non necessaire pour cette partie))
-        answerLists = rep(fileReturn, answerPath) ## Genere les listes des reponses pour chaque question
+        fileReturn = execution_docker(globalFile, languageData[:3])
+        answerLists = rep(fileReturn, answerPath)
 
-        mintedDisplayType = languageData[-1] if len(languageData) == 4 else "text" ## Recupere le type de langage (pour le formatage Latex)
+        mintedDisplayType = languageData[-1] if len(languageData) == 4 else "text"
 
         for i in range(len(answerLists)):
-            question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, questionType) ## Genere le formattage de la question
+            question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, questionType)
             with open(f'Outputs/test{i}.txt', 'w') as f:
-                f.write(question) ## Cree le fichier contenant la question
+                f.write(question)
                 f.close()
 
         with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
-                f.write(codeFile) ## Cree le fichier contenant le code (pour affichage en latex)
+                f.write(codeFile)
                 f.close()
 
     execFile.close()
