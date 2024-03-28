@@ -1,6 +1,6 @@
 from mako.template import Template
 from random import * 
-def generate_question(programme,question,reponses,typeOutput,typeMinted,typeQuestion = None):
+def generate_question(programme,question,reponses,typeOutput,typeMinted,typeQuestion = "None"):
   if typeOutput == "amc":
     enonce = r'''
       \begin{question}{question}
@@ -17,7 +17,7 @@ def generate_question(programme,question,reponses,typeOutput,typeMinted,typeQues
   elif typeOutput == "moodle":
     main = r'''
       {${question}}
-      ${programme}
+      \inputminted[firstline=1, lastline=5]{${langage}}{${programme}}
       % for elt in reponses:
             ${elt}
             % endfor
@@ -47,7 +47,8 @@ programme = "test1.py"
 question = "Que renvoie ce programme ?"
 reponses = ["3","1","2","4"] #la bonne réponse est la première dans la liste
 reponse2= ["3"]
-question1 = generate_question(programme,question,reponse2,"amc","python")
-question2 = generate_question(programme,question,reponse2,"amc","python")
+question1 = generate_question(programme,question,reponses,"amc","python")
+question2 = generate_question(programme,question,reponses,"amc","python")
+#print(generate_question(programme,question,reponses,"moodle","python","multi"))
 print(generate_categorie("cat",[question1,question2]))
 """
