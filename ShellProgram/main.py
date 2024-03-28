@@ -28,7 +28,7 @@ def main(outputType, codeLanguage, filePath, executionPath, answerPath, question
         answerLists = rep(fileReturn, answerPath)
 
         for i in range(len(answerLists)):
-            question = generate_question("fichier.py", "Que renvoie ce programme?", answerLists[i], outputType, questionType)
+            question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, questionType)
             if args.GUIMode:
                 return(question)
             else:
