@@ -24,7 +24,7 @@ def process_qcm():
         source_file = request.files['source_file']
         execution_file = request.files['calls_file']
         answer_file = request.files['answer_file']
-        files.extend(source_file, execution_file, answer_file)
+        files.extend([source_file, execution_file, answer_file])
     
         try:
             for file in files:
@@ -39,26 +39,23 @@ def process_qcm():
                 executionFile = execFile.read()
                 globalFile = codeFile + "\n" + executionFile 
 
-                fileReturn = execution_docker(globalFile, languageData)
+                fileReturn = execution_docker(globalFile, languageData[:3])
                 answerLists = rep(fileReturn, temp_files_paths[2])
 
                 questions = []
                 for i in range(len(answerLists)):
                     question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
                     questions.append(question)
-                    with open(f'Outputs/test{i}.txt', 'w') as f:
-                        f.write(question)
-                        f.close()
-                with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
-                    f.write(codeFile)
-                    f.close()
                 execFile.close()
                 return jsonify({'result': render_template('qcm-result.html', qcmList=questions, fileList = files)})
         finally:
-            for path in temp_files_paths:
-                os.remove(path)
+            #for path in temp_files_paths:
+                #os.remove(path)
+            pass
 
-       
+@app.route('/download/<filename>', methods=['GET'])
+def download(filename):
+    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)   
 
 if __name__ == "__main__":
     app.run(debug=True)
