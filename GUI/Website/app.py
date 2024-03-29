@@ -28,30 +28,69 @@ def process_qcm():
     
         try:
             for file in files:
-                temp_file = tempfile.NamedTemporaryFile(delete=False)
-                file.save(temp_file.name)
-                temp_files_paths.append(temp_file.name)
+                with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+                    file.save(temp_file.name)
+                    temp_files_paths.append(temp_file.name)
             
             languageData = getKnownLanguages()[codeLanguage]
             codeFile = formatage_fichier(temp_files_paths[0])
 
             with open(temp_files_paths[1], "r") as execFile:
                 executionFile = execFile.read()
-                globalFile = codeFile + "\n" + executionFile 
+                categoryList, cleanExecFile = handleCategories(executionFile)
+                globalFile = codeFile + "\n" + cleanExecFile 
 
                 fileReturn = execution_docker(globalFile, languageData[:3])
                 answerLists = rep(fileReturn, temp_files_paths[2])
 
+                mintedDisplayType = languageData[-1] if len(languageData) == 4 else "text"
+
                 questions = []
                 for i in range(len(answerLists)):
-                    question = generate_question("codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, 'multi')
+                    question = generate_question(f"codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, 'multi')
                     questions.append(question)
+
+                questionsDict = handleQuestionGroups(questions,categoryList)
+                for category, questions in questionsDict.items():
+                    categoryString = generate_categorie(category,questions)
+                    with open(f'Outputs/{category}.txt', 'w') as f:
+                        f.write(categoryString) ## Cree le fichier contenant la question
+                        f.close()
+
+                with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
+                        f.write(codeFile) ## Cree le fichier contenant le code (pour affichage en latex)
+                        f.close()
+
                 execFile.close()
                 return jsonify({'result': render_template('qcm-result.html', qcmList=questions, fileList = files)})
         finally:
-            #for path in temp_files_paths:
-                #os.remove(path)
+            for path in temp_files_paths:
+                os.remove(path)
             pass
+
+def handleCategories(executionFile):
+    lines = executionFile.split("\n")
+
+    categoryList = []
+    currentCategory = "Default"
+
+    callsString = ""
+
+    for line in lines:
+        if line.replace(" ","") != "\n" and len(line) > 0:
+            if line[0] == "#":
+                currentCategory = line[1:]
+            else:
+                callsString += line + "\n"
+                categoryList.append(currentCategory)
+    return categoryList, callsString
+
+
+def handleQuestionGroups(questionsList, categoryList):
+    questionsDict = {}
+    for i in range(len(categoryList)):
+        questionsDict[categoryList[i]] = questionsDict.get(categoryList[i], []) + [questionsList[i]]
+    return questionsDict
 
 @app.route('/download/<filename>', methods=['GET'])
 def download(filename):
