@@ -18,7 +18,7 @@ parser.add_argument("questionType", nargs='?', default="multi")
 args = parser.parse_args()
 
 def main(questionName, outputType, codeLanguage, filePath, executionPath, answerPath, questionType):
-    languageData = getKnownLanguages()[codeLanguage] ## Recupere les donnees associees au langage demande
+    languageData = list(getKnownLanguages()[codeLanguage].values()) ## Recupere les donnees associees au langage demande
     codeFile = formatage_fichier(filePath) ## Remplace les balises par du code dans le fichier donne
 
     with open(executionPath, "r") as execFile:
@@ -29,7 +29,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         fileReturn = execution_docker(globalFile, languageData[:3]) ## Execute le fichier sur docker (supprime le 4eme element de la liste s'il existe (non necessaire pour cette partie))
         answerLists = rep(fileReturn, answerPath) ## Genere les listes des reponses pour chaque question
 
-        mintedDisplayType = languageData[-1] if len(languageData) == 4 else "text" ## Recupere le type de langage (pour le formatage Latex)
+        mintedDisplayType = languageData[-1] if languageData[-1] != None else "text" ## Recupere le type de langage (pour le formatage Latex)
 
         formatedQuestionsList = []
         for i in range(len(answerLists)):

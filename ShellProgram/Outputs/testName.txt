@@ -1,0 +1,29 @@
+\element{testName_Category1}{
+  \begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile.py}
+            \item*25
+            \item4
+            \item40
+            \item2
+    \end{multi}
+  \begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile.py}
+            \item*40
+            \item15
+            \item7
+            \item2
+    \end{multi}
+  }
+    \element{testName_Category2}{
+  \begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile.py}
+            \item*15
+            \item946
+            \item25
+            \item4
+    \end{multi}
+  }
+    
