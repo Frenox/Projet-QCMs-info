@@ -33,17 +33,17 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
         formatedQuestionsList = []
         for i in range(len(answerLists)):
-            formatedQuestionsList.append(generate_question(f"codeFile{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, questionType)) ## Genere le formattage de la question
+            formatedQuestionsList.append(generate_question(f"codeFile_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, questionType)) ## Genere le formattage de la question
             
         questionsDict = handleQuestionGroups(formatedQuestionsList,categoryList)
 
-        with open(f"Outputs/{questionName}.txt", "w") as f:
+        with open(f"Outputs/questionFile_{questionName}.txt", "w") as f:
             for category, questions in questionsDict.items():
                 categoryString = generate_categorie(category,questions)
                 f.write(categoryString) ## Cree le fichier contenant la question
         f.close()
 
-        with open(f'Outputs/codeFile{languageData[0]}', 'w') as f:
+        with open(f'Outputs/codeFile_{questionName}{languageData[0]}', 'w') as f:
                 f.write(codeFile) ## Cree le fichier contenant le code (pour affichage en latex)
                 f.close()
 
