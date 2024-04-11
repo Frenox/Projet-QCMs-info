@@ -11,5 +11,3 @@ def execution(script, langue):
     result = subprocess.run(commande, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
     
     return result.stdout.splitlines()
-
-# Exemple d'utilisation avec un script Python simple
