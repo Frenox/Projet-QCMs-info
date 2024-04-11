@@ -1,6 +1,6 @@
 from mako.template import Template
 from random import * 
-def generate_question(programme,question,reponses,typeOutput,typeMinted,category = None,typeQuestion = None):
+def generate_question(programme,question,reponses,typeOutput,typeMinted,category,typeQuestion = None):
   if typeOutput == "amc":
     enonce = r'''
     \element{${category}}{
@@ -17,10 +17,7 @@ def generate_question(programme,question,reponses,typeOutput,typeMinted,category
     '''
     reponses_format= [r"\bonne{" + reponses[0] + "}"] + [r"\mauvaise{" + elt+ "}" for elt in reponses[1:4]]
   elif typeOutput == "moodle":
-    if category is not None:
-      enonce = r'''\setsubcategory{''' + category + '}'
-    else:
-      enonce =''
+    enonce = r'''\setsubcategory{''' + category + '}'
     main = r'''
       {${question}}
       \inputminted[firstline=1, lastline=5]{${langage}}{${programme}}
@@ -39,12 +36,12 @@ def generate_question(programme,question,reponses,typeOutput,typeMinted,category
 
 def generate_category(nom,categories):
   code = r'''
-  % for elt in categories:
-  \setgroupmode{${elt[0]}}{cyclic}
-  \shufflegroup{${elt[0]}}
-  % for _ in range(elt[1]):
+  % for elt in categories.keys():
+  \setgroupmode{${elt}}{cyclic}
+  \shufflegroup{${elt}}
+  % for _ in range(categories[elt]):
   \element{${nom}}{
-  \restituegroupe[1]{${elt[0]}}
+  \restituegroupe[1]{${elt}}
   }
   % endfor
   % endfor
@@ -55,5 +52,6 @@ def generate_category(nom,categories):
 
 """
 print(generate_question("test1.py","Que ?","47","moodle","python","newCat","short"))
-print(generate_category("Category3",[("Category2",2),("Category1",1)]))
+print(generate_category("Category3",{"Category2":2,"Category1":1}))
 """
+
