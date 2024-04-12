@@ -33,14 +33,15 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
         formatedQuestionsList = []
         for i in range(len(answerLists)):
-            formatedQuestionsList.append(generate_question(f"codeFile_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, questionType)) ## Genere le formattage de la question
+            formatedQuestionsList.append(generate_question(f"codeFile_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
             
-        questionsDict = handleQuestionGroups(formatedQuestionsList,categoryList)
+        questionsDict = handleQuestionGroups(categoryList)
+        categoryString = generate_category(questionName,questionsDict)
 
         with open(f"Outputs/questionFile_{questionName}.txt", "w") as f:
-            for category, questions in questionsDict.items():
-                categoryString = generate_categorie(category,questions)
-                f.write(categoryString) ## Cree le fichier contenant la question
+            for question in formatedQuestionsList:
+                f.write(question + "\n")
+            f.write(categoryString)
         f.close()
 
         with open(f'Outputs/codeFile_{questionName}{languageData[0]}', 'w') as f:
@@ -67,10 +68,10 @@ def handleCategories(questionName, executionFile):
     return categoryList, callsString
 
 
-def handleQuestionGroups(questionsList, categoryList):
+def handleQuestionGroups(categoryList):
     questionsDict = {}
-    for i in range(len(categoryList)):
-        questionsDict[categoryList[i]] = questionsDict.get(categoryList[i], []) + [questionsList[i]]
+    for category in categoryList:
+        questionsDict[category] = questionsDict.get(category, 0) + 1
     return questionsDict
 
 
