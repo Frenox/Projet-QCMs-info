@@ -1,0 +1,57 @@
+
+    \element{tempQCMname_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_tempQCMname.py}
+      \begin{reponseshoriz}
+          \bonne{25}
+          \mauvaise{946}
+          \mauvaise{4}
+          \mauvaise{2}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{tempQCMname_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_tempQCMname.py}
+      \begin{reponseshoriz}
+          \bonne{40}
+          \mauvaise{4}
+          \mauvaise{946}
+          \mauvaise{25}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{tempQCMname_Category2}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_tempQCMname.py}
+      \begin{reponseshoriz}
+          \bonne{15}
+          \mauvaise{25}
+          \mauvaise{2}
+          \mauvaise{946}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+  \setgroupmode{tempQCMname_Category1}{cyclic}
+  \shufflegroup{tempQCMname_Category1}
+  \element{tempQCMname}{
+  \restituegroupe[1]{tempQCMname_Category1}
+  }
+  \element{tempQCMname}{
+  \restituegroupe[1]{tempQCMname_Category1}
+  }
+  \setgroupmode{tempQCMname_Category2}{cyclic}
+  \shufflegroup{tempQCMname_Category2}
+  \element{tempQCMname}{
+  \restituegroupe[1]{tempQCMname_Category2}
+  }
+    

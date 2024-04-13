@@ -1,8 +1,8 @@
 import os
 import sys
-from modules.data import *
-from modules.execution import *
-from modules.generation import *
+from common_modules.data import *
+from common_modules.execution import *
+from common_modules.generation import *
 import argparse
 
 
@@ -36,7 +36,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
             formatedQuestionsList.append(generate_question(f"codeFile_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
             
         questionsDict = handleQuestionGroups(categoryList)
-        categoryString = generate_category(questionName,questionsDict)
+        categoryString = generate_category(questionName, questionsDict)
 
         with open(f"Outputs/questionFile_{questionName}.txt", "w") as f:
             for question in formatedQuestionsList:
