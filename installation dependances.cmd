@@ -4,7 +4,8 @@ net session >nul 2>&1
 if %errorLevel% == 0 (
     echo Exécuté avec des droits d'administrateur.
 ) else (
-    echo Ce script doit être exécuté en tant qu'administrateur.
+    echo Ce script doit etre execute en tant qu administrateur.
+    pause
     exit /b
 )
 
