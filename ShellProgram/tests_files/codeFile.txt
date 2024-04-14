@@ -1,3 +1,5 @@
 def test(a):
-    b = 5
+    b = $gen_int()$
     print(a*b) 
+
+_[CodeInsertion]_

@@ -1,27 +1,45 @@
-\setsubcategory{NomQCMTemporaire_Category1}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
-            \item*25
-            \item946
-            \item40
-            \item15
-    \end{multi}
-\setsubcategory{NomQCMTemporaire_Category1}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
-            \item*40
-            \item7
-            \item25
-            \item4
-    \end{multi}
-\setsubcategory{NomQCMTemporaire_Category2}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
-            \item*15
-            \item40
-            \item2
-            \item25
-    \end{multi}
+
+    \element{NomQCMTemporaire_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
+      \begin{reponseshoriz}
+          \bonne{45}
+          \mauvaise{946}
+          \mauvaise{4}
+          \mauvaise{7}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{NomQCMTemporaire_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
+      \begin{reponseshoriz}
+          \bonne{72}
+          \mauvaise{7}
+          \mauvaise{25}
+          \mauvaise{27}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{NomQCMTemporaire_Category2}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_NomQCMTemporaire.py}
+      \begin{reponseshoriz}
+          \bonne{27}
+          \mauvaise{946}
+          \mauvaise{2}
+          \mauvaise{72}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
 
   \setgroupmode{NomQCMTemporaire_Category1}{cyclic}
   \shufflegroup{NomQCMTemporaire_Category1}

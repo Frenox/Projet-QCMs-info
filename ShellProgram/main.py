@@ -8,20 +8,14 @@ from common_modules.data import *
 from common_modules.generation import *
 from common_modules.execution import *
 
-parser = argparse.ArgumentParser()
-parser.add_argument('questionName', type=str)
-parser.add_argument('outputType', type=str)
-parser.add_argument('codeLanguage', type=str)
-parser.add_argument('filePath', type=str)
-parser.add_argument('executionPath', type=str)
-parser.add_argument('answerPath', type=str)
-parser.add_argument("questionType", nargs='?', default="multi")
-
-args = parser.parse_args()
-
-def main(questionName, outputType, codeLanguage, filePath, executionPath, answerPath, questionType):
+def main(questionName, outputType, codeLanguage, filePath, executionPath, answerPath, questionType, GUImode):
     languageData = list(getKnownLanguages()[codeLanguage].values()) ## Recupere les donnees associees au langage demande
     codeFile = formatage_fichier(filePath) ## Remplace les balises par du code dans le fichier donne
+
+    if GUImode == "True":
+        outputPath = "Website/static/download"
+    else:
+        outputPath = "Outputs"
 
     with open(executionPath, "r") as execFile:
         executionFile = execFile.read()
@@ -46,14 +40,14 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         questionsDict = handleQuestionGroups(categoryList)
         categoryString = generate_category(questionName, questionsDict)
 
-        with open(f"Outputs/questionFile_{questionName}.txt", "w") as f:
+        with open(f"{outputPath}/questionFile_{questionName}.txt", "w") as f:
             for question in formatedQuestionsList:
                 f.write(question + "\n") ## Ecrit chaque question dans le fichier Latex
             f.write(categoryString) ## Ecrit le groupe global des questions
         f.close()
 
         for i in range(len(files)):
-            with open(f'Outputs/codeFile_{questionName}{i+1}{languageData[0]}', 'w') as f:
+            with open(f'{outputPath}/codeFile_{questionName}{i+1}{languageData[0]}', 'w') as f:
                     f.write(files[i]) ## Cree le fichier contenant chaque code (pour affichage en latex)
                     f.close()
 
@@ -84,5 +78,16 @@ def handleQuestionGroups(categoryList):
     return questionsDict
 
 
-
-main(args.questionName, args.outputType, args.codeLanguage, args.filePath, args.executionPath, args.answerPath, args.questionType)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('questionName', type=str)
+    parser.add_argument('outputType', type=str)
+    parser.add_argument('codeLanguage', type=str)
+    parser.add_argument('filePath', type=str)
+    parser.add_argument('executionPath', type=str)
+    parser.add_argument('answerPath', type=str)
+    parser.add_argument("questionType", nargs='?', default="multi")
+    parser.add_argument("GUImode", nargs='?', default="False")
+    args = parser.parse_args()
+    
+    main(args.questionName, args.outputType, args.codeLanguage, args.filePath, args.executionPath, args.answerPath, args.questionType, args.GUImode)
