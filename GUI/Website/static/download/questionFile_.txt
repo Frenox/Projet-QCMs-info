@@ -1,0 +1,39 @@
+\setsubcategory{_Category1}\begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+            \item*5
+            \item946
+            \item3
+            \item4
+    \end{multi}
+\setsubcategory{_Category1}\begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+            \item*8
+            \item25
+            \item5
+            \item3
+    \end{multi}
+\setsubcategory{_Category2}\begin{multi}
+      {Que renvoie ce programme?}
+      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+            \item*3
+            \item2
+            \item7
+            \item946
+    \end{multi}
+
+  \setgroupmode{_Category1}{cyclic}
+  \shufflegroup{_Category1}
+  \element{}{
+  \restituegroupe[1]{_Category1}
+  }
+  \element{}{
+  \restituegroupe[1]{_Category1}
+  }
+  \setgroupmode{_Category2}{cyclic}
+  \shufflegroup{_Category2}
+  \element{}{
+  \restituegroupe[1]{_Category2}
+  }
+    
