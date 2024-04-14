@@ -1,0 +1,176 @@
+{
+    "python3": {
+        "extension": ".py",
+        "docker_image": "python:3.8",
+        "execution_command": "python /app/{filename}",
+        "latex_format": "python"
+    },
+    "python2": {
+        "extension": ".py",
+        "docker_image": "python:2.7",
+        "execution_command": "python /app/{filename}",
+        "latex_format": "python"
+    },
+    "c": {
+        "extension": ".c",
+        "docker_image": "gcc:latest",
+        "execution_command": "/bin/bash -c 'gcc /app/{filename} -o /app/{filename}.out && /app/{filename}.out'",
+        "latex_format": "c"
+    },
+    "c++": {
+        "extension": ".cpp",
+        "docker_image": "gcc:latest",
+        "execution_command": "/bin/bash -c 'g++ /app/{filename} -o /app/{filename}.out && /app/{filename}.out'",
+        "latex_format": "cpp"
+    },
+    "java": {
+        "extension": ".java",
+        "docker_image": "openjdk:latest",
+        "execution_command": "/bin/bash -c 'javac /app/{filename} && java -cp /app Main'",
+        "latex_format": "java"
+    },
+    "javascript": {
+        "extension": ".js",
+        "docker_image": "node:latest",
+        "execution_command": "node /app/{filename}",
+        "latex_format": "js"
+    },
+    "typescript": {
+        "extension": ".ts",
+        "docker_image": "node:latest",
+        "execution_command": "/bin/bash -c 'tsc /app/{filename} && node /app/{filenameWithoutExt}.js'",
+        "latex_format": null
+    },
+    "ruby": {
+        "extension": ".rb",
+        "docker_image": "ruby:latest",
+        "execution_command": "ruby /app/{filename}",
+        "latex_format": "ruby"
+    },
+    "php": {
+        "extension": ".php",
+        "docker_image": "php:latest",
+        "execution_command": "php /app/{filename}",
+        "latex_format": "php"
+    },
+    "swift": {
+        "extension": ".swift",
+        "docker_image": "swift:latest",
+        "execution_command": "swift /app/{filename}",
+        "latex_format": null
+    },
+    "go": {
+        "extension": ".go",
+        "docker_image": "golang:latest",
+        "execution_command": "/bin/bash -c 'go run /app/{filename}'",
+        "latex_format": "go"
+    },
+    "rust": {
+        "extension": ".rs",
+        "docker_image": "rust:latest",
+        "execution_command": "/bin/bash -c 'rustc /app/{filename} && /app/{filenameWithoutExt}'",
+        "latex_format": null
+    },
+    "kotlin": {
+        "extension": ".kt",
+        "docker_image": "kotlin:latest",
+        "execution_command": "/bin/bash -c 'kotlinc /app/{filename} -include-runtime -d /app/{filenameWithoutExt}.jar && java -jar /app/{filenameWithoutExt}.jar'",
+        "latex_format": null
+    },
+    "scala": {
+        "extension": ".scala",
+        "docker_image": "scala:latest",
+        "execution_command": "/bin/bash -c 'scalac /app/{filename} && scala -cp /app {MainClass}'",
+        "latex_format": null
+    },
+    "perl": {
+        "extension": ".pl",
+        "docker_image": "perl:latest",
+        "execution_command": "perl /app/{filename}",
+        "latex_format": "perl"
+    },
+    "lua": {
+        "extension": ".lua",
+        "docker_image": "lua:latest",
+        "execution_command": "lua /app/{filename}",
+        "latex_format": "lua"
+    },
+    "haskell": {
+        "extension": ".hs",
+        "docker_image": "haskell:latest",
+        "execution_command": "/bin/bash -c 'ghc /app/{filename} -o /app/{filenameWithoutExt} && /app/{filenameWithoutExt}'",
+        "latex_format": "haskell"
+    },
+    "dart": {
+        "extension": ".dart",
+        "docker_image": "dart:latest",
+        "execution_command": "dart /app/{filename}",
+        "latex_format": null
+    },
+    "elixir": {
+        "extension": ".exs",
+        "docker_image": "elixir:latest",
+        "execution_command": "elixir /app/{filename}",
+        "latex_format": null
+    },
+    "clojure": {
+        "extension": ".clj",
+        "docker_image": "clojure:latest",
+        "execution_command": "/bin/bash -c 'clojure /app/{filename}'",
+        "latex_format": null
+    },
+    "r": {
+        "extension": ".r",
+        "docker_image": "r-base:latest",
+        "execution_command": "Rscript /app/{filename}",
+        "latex_format": "r"
+    },
+    "fortran": {
+        "extension": ".f90",
+        "docker_image": "gcc:latest",
+        "execution_command": "/bin/bash -c 'gfortran /app/{filename} -o /app/{filenameWithoutExt} && /app/{filenameWithoutExt}'",
+        "latex_format": "fortran"
+    },
+    "ada": {
+        "extension": ".adb",
+        "docker_image": "gcc:latest",
+        "execution_command": "/bin/bash -c 'gnatmake /app/{filename} -o /app/{filenameWithoutExt} && /app/{filenameWithoutExt}'",
+        "latex_format": "ada"
+    },
+    "cobol": {
+        "extension": ".cob",
+        "docker_image": "gnucobol:latest",
+        "execution_command": "/bin/bash -c 'cobc -free -x -o /app/{filenameWithoutExt} /app/{filename} && /app/{filenameWithoutExt}'",
+        "latex_format": "cobol"
+    },
+    "erlang": {
+        "extension": ".erl",
+        "docker_image": "erlang:latest",
+        "execution_command": "/bin/bash -c 'erlc /app/{filename} && erl -noshell -s {ModuleName} start -s init stop'",
+        "latex_format": null
+    },
+    "ocaml": {
+        "extension": ".ml",
+        "docker_image": "ocaml:latest",
+        "execution_command": "/bin/bash -c 'ocamlopt /app/{filename} -o /app/{filenameWithoutExt} && /app/{filenameWithoutExt}'",
+        "latex_format": "ocaml"
+    },
+    "scheme": {
+        "extension": ".scm",
+        "docker_image": "scheme:latest",
+        "execution_command": "scheme --script /app/{filename}",
+        "latex_format": "scheme"
+    },
+    "prolog": {
+        "extension": ".pl",
+        "docker_image": "swi-prolog:latest",
+        "execution_command": "swipl -q -t main -f /app/{filename}",
+        "latex_format": "prolog"
+    },
+    "assembly": {
+        "extension": ".asm",
+        "docker_image": "nasm:latest",
+        "execution_command": "/bin/bash -c 'nasm -f elf64 /app/{filename} && ld /app/{filenameWithoutExt}.o -o /app/{filenameWithoutExt} &&'",
+        "latex_format": null
+    }
+}

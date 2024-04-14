@@ -1,10 +1,10 @@
 import os
 import sys
-from common_modules.data import *
-from common_modules.execution import *
-from common_modules.generation import *
 import argparse
 
+from shell_modules.generation import *
+from shell_modules.execution import *
+from shell_modules.data import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('questionName', type=str)

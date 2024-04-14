@@ -1,13 +1,12 @@
 from flask import Flask, request, render_template, jsonify
 import tempfile
+import os, sys
 
-from common_modules.data import *
-from common_modules.execution import *
-from common_modules.generation import *
+from gui_modules.generation import *
+from gui_modules.execution import *
+from gui_modules.data import *
+
 app = Flask(__name__)
-
-
-
 
 @app.route("/")
 def home():
