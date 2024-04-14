@@ -2,9 +2,11 @@ import os
 import sys
 import argparse
 
-from shell_modules.generation import *
-from shell_modules.execution import *
-from shell_modules.data import *
+sys.path.append(os.path.abspath('..'))
+
+from common_modules.data import *
+from common_modules.generation import *
+from common_modules.execution import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('questionName', type=str)

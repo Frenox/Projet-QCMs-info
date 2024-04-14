@@ -2,9 +2,11 @@ from flask import Flask, request, render_template, jsonify
 import tempfile
 import os, sys
 
-from gui_modules.generation import *
-from gui_modules.execution import *
-from gui_modules.data import *
+sys.path.append(os.path.abspath('..'))
+
+from common_modules.data import *
+from common_modules.generation import *
+from common_modules.execution import *
 
 app = Flask(__name__)
 
@@ -12,8 +14,6 @@ app = Flask(__name__)
 def home():
     # Passer les noms des langages au template index.html
     return render_template('index.html', langages=getKnownLanguages().keys())
-
-
 
 @app.route('/process_qcm', methods=['POST'])
 def process_qcm():
@@ -36,7 +36,7 @@ def process_qcm():
             languageData = list(getKnownLanguages()[codeLanguage].values()) ## Recupere les donnees associees au langage demande
             codeFile = formatage_fichier(temp_files_paths[0]) ## Remplace les balises par du code dans le fichier donne
 
-            questionName = "tempQCMname" # change questionName to variable
+            questionName = "NomQCMTemporaire" # change questionName to variable
             questionType = "multi"       # change questionType to variable
 
             with open(temp_files_paths[1], "r") as execFile:
@@ -95,16 +95,11 @@ def handleCategories(questionName, executionFile):
                 categoryList.append(currentCategory)
     return categoryList, callsString
 
-
 def handleQuestionGroups(categoryList):
     questionsDict = {}
     for category in categoryList:
         questionsDict[category] = questionsDict.get(category, 0) + 1
     return questionsDict
-
-@app.route('/download/<filename>', methods=['GET'])
-def download(filename):
-    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)   
 
 if __name__ == "__main__":
     app.run(debug=True)
