@@ -33,9 +33,9 @@ def process_qcm():
 
             questionType = "multi"       # change questionType to variable
             questionName = "NomQCMTemporaire" # change questionName to variable
-            main(questionName, outputType, codeLanguage, temp_files_paths[0], temp_files_paths[1], temp_files_paths[2], questionType, GUImode="True")
+            outputList = main(questionName, outputType, codeLanguage, temp_files_paths[0], temp_files_paths[1], temp_files_paths[2], questionType, GUImode="True")
             #return jsonify({'result': render_template('qcm-result.html', qcmList=questions, fileList = files)})
-            return jsonify({'result': render_template('download.html', name = questionName)})
+            return jsonify({'result': render_template('download.html', name = questionName, outputs = outputList)})
         finally:
             for path in temp_files_paths:
                 os.remove(path)

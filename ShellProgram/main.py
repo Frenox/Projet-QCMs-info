@@ -23,6 +23,8 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         
         fileReturn = [] ## Liste des renvois
         files = [] ## Liste des fichiers
+        outputFiles = [] ## Liste des fichiers de sortie (utilisés pour le GUI)
+
         for call in callsList:
             globalFile = codeFile.replace("_[CodeInsertion]_" ,call) ## Cree le fichier global contenant le code et la partie variable
             files.append(globalFile) ## Sauvegarde le fichier
@@ -47,11 +49,14 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         f.close()
 
         for i in range(len(files)):
+            if GUImode == "True":
+                outputFiles.append(f"{questionName}{i+1}{languageData[0]}") # pour le GUI
             with open(f'{outputPath}/codeFile_{questionName}{i+1}{languageData[0]}', 'w') as f:
                     f.write(files[i]) ## Cree le fichier contenant chaque code (pour affichage en latex)
                     f.close()
 
     execFile.close()
+    return outputFiles
 
 def handleCategories(questionName, executionFile):
     lines = executionFile.split("\n")
