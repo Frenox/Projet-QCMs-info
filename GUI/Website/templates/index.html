@@ -19,160 +19,206 @@
     </div>
   </div>
   <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Générateur de QCMs 
-      </h1>
-      <p class="subtitle">
-        Outil de génération de QCMs pour formats <strong>AMC/Moodle</strong>.
-      </p>
-      <form id="qcmForm" action="/process_qcm" method="post" enctype="multipart/form-data">
-        <div class="columns">
-          <div class="column">
-              <div class="box">
-                  <nav class="level">
+    <div class="block">
+      <div class="container">
+        <h1 class="title">
+          Générateur de QCMs 
+        </h1>
+        <p class="subtitle">
+          Outil de génération de QCMs pour formats <strong>AMC/Moodle</strong>.
+        </p>
+        <form id="qcmForm" action="/process_qcm" method="post" enctype="multipart/form-data">
+          <div class="columns">
+            <div class="column">
+                <div class="box">
+                    <nav class="level">
+                        <div class="level-left">
+                          <h1 class="title is-4">Code Source</h1>
+                        </div>
+                        <div class="level-right">
+                          <span class="icon is-medium">
+                            <i class="fas fa-2x fa-file-code"></i>
+                          </span>
+                        </div>
+                    </nav>
+                    <nav class="level">
                       <div class="level-left">
-                        <h1 class="title is-4">Code Source</h1>
+                        <div class="level-item">
+                          <div class="block">
+                            <div class="file has-name">
+                                <label class="file-label">
+                                <input class="file-input" type="file" name="source_file">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                    Choisir un fichier...
+                                    </span>
+                                </span>
+                                <span class="file-name"> Aucun fichier... </span>
+                                </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="level-item">
+                          <div class="control">
+                            <div class="select">
+                              <select name="format_select">
+                                {% for langage in langages %}
+                                  <option value="{{ langage }}">{{ langage }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                </div>
+                <div class="box">
+                    <nav class="level">
+                      <div class="level-left">
+                        <h1 class="title is-4">Fichier d'appels</h1>
                       </div>
                       <div class="level-right">
                         <span class="icon is-medium">
-                          <i class="fas fa-2x fa-file-code"></i>
+                          <i class="fas fa-2x fa-comment-dots"></i>
                         </span>
                       </div>
-                  </nav>
-                  <nav class="level">
-                    <div class="level-left">
-                      <div class="level-item">
-                        <div class="block">
-                          <div class="file has-name">
+                    </nav>
+                    <nav class="level">
+                      <div class="level-left">
+                        <div class="level-item">
+                          <div class="block">
+                            <div class="file has-name">
+                                <label class="file-label">
+                                <input class="file-input" type="file" name="calls_file">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                    Choisir un fichier...
+                                    </span>
+                                </span>
+                                <span class="file-name"> Aucun fichier... </span>
+                                </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <nav class="level">
+                      <div class="level-left">
+                        <h1 class="title is-4">Fichier réponses</h1>
+                      </div>
+                      <div class="level-right">
+                        <span class="icon is-medium">
+                          <i class="fas fa-2x fa-tasks"></i>
+                        </span>
+                      </div>
+                    </nav>
+                    <nav class="level">
+                      <div class="level-left">
+                        <div class="level-item">
+                          <div class="block">
+                            <div class="file has-name">
                               <label class="file-label">
-                              <input class="file-input" type="file" name="source_file">
-                              <span class="file-cta">
+                                <input class="file-input" type="file" name="answer_file">
+                                <span class="file-cta">
                                   <span class="file-icon">
-                                  <i class="fas fa-upload"></i>
+                                    <i class="fas fa-upload"></i>
                                   </span>
                                   <span class="file-label">
-                                  Choisir un fichier...
+                                    Choisir un fichier...
                                   </span>
-                              </span>
-                              <span class="file-name"> Aucun fichier... </span>
+                                </span>
+                                <span class="file-name"> Aucun fichier... </span>
                               </label>
                           </div>
-                        </div>
-                      </div>
-                      <div class="level-item">
-                        <div class="control">
-                          <label class="radio">
-                          <input type="radio" name="output_type" value="amc" checked>
-                          AMC
-                          </label>
-                          <label class="radio">
-                          <input type="radio" name="output_type" value="moodle">
-                          Moodle
-                          </label>
-                          <label class="radio" disabled>
-                          <input type="radio" name="output_type" value="other" disabled>
-                          Other
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </nav>
-              </div>
-              <div class="box">
-                  <nav class="level">
-                    <div class="level-left">
-                      <h1 class="title is-4">Fichier d'appels</h1>
-                    </div>
-                    <div class="level-right">
-                      <span class="icon is-medium">
-                        <i class="fas fa-2x fa-comment-dots"></i>
-                      </span>
-                    </div>
-                  </nav>
-                  <nav class="level">
-                    <div class="level-left">
-                      <div class="level-item">
-                        <div class="block">
-                          <div class="file has-name">
-                              <label class="file-label">
-                              <input class="file-input" type="file" name="calls_file">
-                              <span class="file-cta">
-                                  <span class="file-icon">
-                                  <i class="fas fa-upload"></i>
-                                  </span>
-                                  <span class="file-label">
-                                  Choisir un fichier...
-                                  </span>
-                              </span>
-                              <span class="file-name"> Aucun fichier... </span>
-                              </label>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </nav>
-              </div>
+                    </nav>
+                </div>
+            </div>
           </div>
-          <div class="column">
-              <div class="box">
-                  <nav class="level">
-                    <div class="level-left">
-                      <h1 class="title is-4">Fichier réponses</h1>
+          <div class="box">
+            <div class="block">
+              <nav class="level-left">
+                <div class="level-item">
+                  <input
+                    name="qcm_name"
+                    class="input is-primary"
+                    type="text"
+                    placeholder="nom_QCM"
+                  />
+                </div>
+                <div class="level-item">
+                  <div class="control">
+                    <button class="button is-primary" id="generateButton" disabled>Générer QCM</button>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="block">
+                <div class="columns">
+                  <div class="column is-narrow">
+                    <h5 class="subtitle">Format de sortie:</h5>
+                    <div class="control" style="margin-top: -15px;">
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="amc" checked>
+                      AMC
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="moodle">
+                      Moodle
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="other" disabled>
+                      Other
+                      </label>
                     </div>
-                    <div class="level-right">
-                      <span class="icon is-medium">
-                        <i class="fas fa-2x fa-tasks"></i>
-                      </span>
+                  </div>
+                  <div class="column">
+                    <h5 class="subtitle">Type de QCM:</h5>
+                    <div class="control" style="margin-top: -15px;">
+                      <label class="radio">
+                      <input type="radio" name="questionType" value="multi" checked>
+                      Choix-multiple
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="questionType" value="short" disabled>
+                      Réponse courte
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="questionType" value="other" disabled>
+                      Other
+                      </label>
                     </div>
-                  </nav>
-                  <nav class="level">
-                    <div class="level-left">
-                      <div class="level-item">
-                        <div class="block">
-                          <div class="file has-name">
-                            <label class="file-label">
-                              <input class="file-input" type="file" name="answer_file">
-                              <span class="file-cta">
-                                <span class="file-icon">
-                                  <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                  Choisir un fichier...
-                                </span>
-                              </span>
-                              <span class="file-name"> Aucun fichier... </span>
-                            </label>
-                        </div>
-                        </div>
-                      </div>
-                      <div class="level-item">
-                        <div class="control">
-                          <div class="select">
-                            <select name="format_select">
-                              {% for langage in langages %}
-                                <option value="{{ langage }}">{{ langage }}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </nav>
-              </div>
+                  </div> 
+                </div> 
+            </div>
           </div>
-        </div>
-        <div class="control">
-          <button class="button is-primary" id="generateButton" disabled>Générer QCM</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </section>
-  <section class="section">
+
     <div class="container">
       <progress class="progress is-small is-primary" id="loadBar" max="100" style="display: none;">15%</progress>
     </div>
+    <!--
     <div class="box" id="result" style="display: none;">
+      <div class="fixed-grid has-1-cols">
+        <div class="grid" id="resultGrid"></div>
+      </div>
+    </div>
+    -->
+    <div class="container" id="result" style="display: none;">
       <div class="fixed-grid has-1-cols">
         <div class="grid" id="resultGrid"></div>
       </div>

@@ -23,6 +23,9 @@ def process_qcm():
         source_file = request.files['source_file']
         execution_file = request.files['calls_file']
         answer_file = request.files['answer_file']
+        questionName = request.form['qcm_name'] # robustesse ?? (injections SQL en route mdrrr)
+        questionType = request.form['questionType']
+
         files.extend([source_file, execution_file, answer_file])
         
         try:
@@ -31,11 +34,9 @@ def process_qcm():
                     file.save(temp_file.name)
                     temp_files_paths.append(temp_file.name)
 
-            questionType = "multi"       # change questionType to variable
-            questionName = "NomQCMTemporaire" # change questionName to variable
             outputList = main(questionName, outputType, codeLanguage, temp_files_paths[0], temp_files_paths[1], temp_files_paths[2], questionType, GUImode="True")
             #return jsonify({'result': render_template('qcm-result.html', qcmList=questions, fileList = files)})
-            return jsonify({'result': render_template('download.html', name = questionName, outputs = outputList)})
+            return jsonify({'result': render_template('download.html', name=questionName, outputs=outputList)})
         finally:
             for path in temp_files_paths:
                 os.remove(path)
