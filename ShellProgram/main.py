@@ -30,7 +30,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         fileReturn = [] ## Liste des renvois
         files = [] ## Liste des fichiers
         for call in callsList:
-            globalFile = codeFile.replace("[CodeInsertion]" ,call) ## Cree le fichier global contenant le code et la partie variable
+            globalFile = codeFile.replace("_[CodeInsertion]_" ,call) ## Cree le fichier global contenant le code et la partie variable
             files.append(globalFile) ## Sauvegarde le fichier
 
             fileReturn += execution_docker(globalFile, languageData[:3]) ## Execute le fichier sur docker (supprime le 4eme element de la liste s'il existe (non necessaire pour cette partie))
