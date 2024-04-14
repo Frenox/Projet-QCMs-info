@@ -25,10 +25,16 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
     with open(executionPath, "r") as execFile:
         executionFile = execFile.read()
-        categoryList, cleanExecFile = handleCategories(questionName, executionFile)
-        globalFile = codeFile + "\n" + cleanExecFile ## Cree le fichier global contenant le code et les appels a executer
+        categoryList, callsList = handleCategories(questionName, executionFile)
+        
+        fileReturn = [] ## Liste des renvois
+        files = [] ## Liste des fichiers
+        for call in callsList:
+            globalFile = codeFile.replace("[CodeInsertion]" ,call) ## Cree le fichier global contenant le code et la partie variable
+            files.append(globalFile) ## Sauvegarde le fichier
 
-        fileReturn = execution_docker(globalFile, languageData[:3]) ## Execute le fichier sur docker (supprime le 4eme element de la liste s'il existe (non necessaire pour cette partie))
+            fileReturn += execution_docker(globalFile, languageData[:3]) ## Execute le fichier sur docker (supprime le 4eme element de la liste s'il existe (non necessaire pour cette partie))
+
         answerLists = rep(fileReturn, answerPath) ## Genere les listes des reponses pour chaque question
 
         mintedDisplayType = languageData[-1] if languageData[-1] != None else "text" ## Recupere le type de langage (pour le formatage Latex)
@@ -42,13 +48,14 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
         with open(f"Outputs/questionFile_{questionName}.txt", "w") as f:
             for question in formatedQuestionsList:
-                f.write(question + "\n")
-            f.write(categoryString)
+                f.write(question + "\n") ## Ecrit chaque question dans le fichier Latex
+            f.write(categoryString) ## Ecrit le groupe global des questions
         f.close()
 
-        with open(f'Outputs/codeFile_{questionName}{languageData[0]}', 'w') as f:
-                f.write(codeFile) ## Cree le fichier contenant le code (pour affichage en latex)
-                f.close()
+        for i in range(len(files)):
+            with open(f'Outputs/codeFile_{questionName}{i+1}{languageData[0]}', 'w') as f:
+                    f.write(files[i]) ## Cree le fichier contenant chaque code (pour affichage en latex)
+                    f.close()
 
     execFile.close()
 
@@ -58,16 +65,16 @@ def handleCategories(questionName, executionFile):
     categoryList = []
     currentCategory = "Default"
 
-    callsString = ""
+    callsList = []
 
     for line in lines:
         if line.replace(" ","") != "\n" and len(line) > 0:
             if line[0] == "#":
                 currentCategory = questionName + "_" + line[1:]
             else:
-                callsString += line + "\n"
+                callsList.append(line)
                 categoryList.append(currentCategory)
-    return categoryList, callsString
+    return categoryList, callsList
 
 
 def handleQuestionGroups(categoryList):
