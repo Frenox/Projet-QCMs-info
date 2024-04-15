@@ -42,7 +42,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         questionsDict = handleQuestionGroups(categoryList)
         categoryString = generate_category(questionName, questionsDict)
 
-        with open(f"{outputPath}/fichier_question_{questionName}.txt", "w") as f:
+        with open(f"{outputPath}/fichier_question_{questionName}.tex", "w") as f:
             for question in formatedQuestionsList:
                 f.write(question + "\n") ## Ecrit chaque question dans le fichier Latex
             f.write(categoryString) ## Ecrit le groupe global des questions
