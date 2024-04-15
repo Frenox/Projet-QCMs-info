@@ -1,0 +1,57 @@
+
+    \element{test_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_test.py}
+      \begin{reponseshoriz}
+          \bonne{10}
+          \mauvaise{4}
+          \mauvaise{7}
+          \mauvaise{16}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{test_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_test.py}
+      \begin{reponseshoriz}
+          \bonne{16}
+          \mauvaise{6}
+          \mauvaise{2}
+          \mauvaise{25}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{test_Category2}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_test.py}
+      \begin{reponseshoriz}
+          \bonne{6}
+          \mauvaise{4}
+          \mauvaise{16}
+          \mauvaise{25}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+  \setgroupmode{test_Category1}{cyclic}
+  \shufflegroup{test_Category1}
+  \element{test}{
+  \restituegroupe[1]{test_Category1}
+  }
+  \element{test}{
+  \restituegroupe[1]{test_Category1}
+  }
+  \setgroupmode{test_Category2}{cyclic}
+  \shufflegroup{test_Category2}
+  \element{test}{
+  \restituegroupe[1]{test_Category2}
+  }
+    
