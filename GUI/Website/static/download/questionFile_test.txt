@@ -4,10 +4,10 @@
         Que renvoie ce programme? 
         \inputminted[firstline=1, lastline=5]{python}{codeFile_test.py}
       \begin{reponseshoriz}
-          \bonne{10}
+          \bonne{15}
+          \mauvaise{946}
           \mauvaise{7}
           \mauvaise{2}
-          \mauvaise{25}
         \end{reponseshoriz} 
       \end{question}
       }
@@ -18,10 +18,10 @@
         Que renvoie ce programme? 
         \inputminted[firstline=1, lastline=5]{python}{codeFile_test.py}
       \begin{reponseshoriz}
-          \bonne{16}
-          \mauvaise{7}
+          \bonne{24}
           \mauvaise{2}
-          \mauvaise{10}
+          \mauvaise{25}
+          \mauvaise{9}
         \end{reponseshoriz} 
       \end{question}
       }
@@ -32,10 +32,10 @@
         Que renvoie ce programme? 
         \inputminted[firstline=1, lastline=5]{python}{codeFile_test.py}
       \begin{reponseshoriz}
-          \bonne{6}
-          \mauvaise{10}
-          \mauvaise{7}
-          \mauvaise{16}
+          \bonne{9}
+          \mauvaise{2}
+          \mauvaise{15}
+          \mauvaise{946}
         \end{reponseshoriz} 
       \end{question}
       }

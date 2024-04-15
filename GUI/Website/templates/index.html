@@ -30,6 +30,50 @@
           Outil de génération de QCMs pour formats <strong>AMC/Moodle</strong>.
         </p>
         <form id="qcmForm" action="/process_qcm" method="post" enctype="multipart/form-data">
+          <div class="box">
+            <div class="block">
+                <div class="columns">
+                  <div class="column is-narrow">
+                    <input
+                      name="qcm_name"
+                      class="input is-primary"
+                      type="text"
+                      placeholder="nom_QCM"
+                    />
+                  </div>
+                  <div class="column is-narrow">
+                    <h5 class="subtitle">Format de sortie:</h5>
+                    <div class="control" style="margin-top: -15px;">
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="amc" checked>
+                      AMC
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="moodle">
+                      Moodle
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="output_type" value="other" disabled>
+                      Other
+                      </label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <h5 class="subtitle">Type de QCM:</h5>
+                    <div class="control" style="margin-top: -15px;">
+                      <label class="radio">
+                      <input type="radio" name="questionType" value="multi" checked>
+                      Choix-multiple
+                      </label>
+                      <label class="radio">
+                      <input type="radio" name="questionType" value="short">
+                      Réponse courte
+                      </label>
+                    </div>
+                  </div> 
+                </div> 
+            </div>
+          </div>
           <div class="columns">
             <div class="column">
                 <div class="box">
@@ -149,62 +193,14 @@
                 </div>
             </div>
           </div>
-          <div class="box">
-            <div class="block">
-              <nav class="level-left">
-                <div class="level-item">
-                  <input
-                    name="qcm_name"
-                    class="input is-primary"
-                    type="text"
-                    placeholder="nom_QCM"
-                  />
-                </div>
-                <div class="level-item">
-                  <div class="control">
-                    <button class="button is-primary" id="generateButton" disabled>Générer QCM</button>
-                  </div>
-                </div>
-              </nav>
+          <div class="columns">
+            <div class="column"></div>
+            <div class="column">
+              <div class="control has-text-centered">
+                <button class="button is-primary" id="generateButton" disabled>Générer QCM</button>
+              </div>
             </div>
-            <div class="block">
-                <div class="columns">
-                  <div class="column is-narrow">
-                    <h5 class="subtitle">Format de sortie:</h5>
-                    <div class="control" style="margin-top: -15px;">
-                      <label class="radio">
-                      <input type="radio" name="output_type" value="amc" checked>
-                      AMC
-                      </label>
-                      <label class="radio">
-                      <input type="radio" name="output_type" value="moodle">
-                      Moodle
-                      </label>
-                      <label class="radio">
-                      <input type="radio" name="output_type" value="other" disabled>
-                      Other
-                      </label>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <h5 class="subtitle">Type de QCM:</h5>
-                    <div class="control" style="margin-top: -15px;">
-                      <label class="radio">
-                      <input type="radio" name="questionType" value="multi" checked>
-                      Choix-multiple
-                      </label>
-                      <label class="radio">
-                      <input type="radio" name="questionType" value="short" disabled>
-                      Réponse courte
-                      </label>
-                      <label class="radio">
-                      <input type="radio" name="questionType" value="other" disabled>
-                      Other
-                      </label>
-                    </div>
-                  </div> 
-                </div> 
-            </div>
+            <div class="column"></div>
           </div>
         </form>
       </div>

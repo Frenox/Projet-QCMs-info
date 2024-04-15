@@ -1,0 +1,57 @@
+
+    \element{nom_génial_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_nom_génial.py}
+      \begin{reponseshoriz}
+          \bonne{20}
+          \mauvaise{25}
+          \mauvaise{12}
+          \mauvaise{32}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{nom_génial_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_nom_génial.py}
+      \begin{reponseshoriz}
+          \bonne{32}
+          \mauvaise{25}
+          \mauvaise{4}
+          \mauvaise{12}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{nom_génial_Category2}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{fichier_code_nom_génial.py}
+      \begin{reponseshoriz}
+          \bonne{12}
+          \mauvaise{2}
+          \mauvaise{946}
+          \mauvaise{7}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+  \setgroupmode{nom_génial_Category1}{cyclic}
+  \shufflegroup{nom_génial_Category1}
+  \element{nom_génial}{
+  \restituegroupe[1]{nom_génial_Category1}
+  }
+  \element{nom_génial}{
+  \restituegroupe[1]{nom_génial_Category1}
+  }
+  \setgroupmode{nom_génial_Category2}{cyclic}
+  \shufflegroup{nom_génial_Category2}
+  \element{nom_génial}{
+  \restituegroupe[1]{nom_génial_Category2}
+  }
+    

@@ -1,27 +1,45 @@
-\setsubcategory{_Category1}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
-            \item*5
-            \item946
-            \item3
-            \item4
-    \end{multi}
-\setsubcategory{_Category1}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
-            \item*8
-            \item25
-            \item5
-            \item3
-    \end{multi}
-\setsubcategory{_Category2}\begin{multi}
-      {Que renvoie ce programme?}
-      \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
-            \item*3
-            \item2
-            \item7
-            \item946
-    \end{multi}
+
+    \element{_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+      \begin{reponseshoriz}
+          \bonne{15}
+          \mauvaise{2}
+          \mauvaise{4}
+          \mauvaise{9}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{_Category1}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+      \begin{reponseshoriz}
+          \bonne{24}
+          \mauvaise{946}
+          \mauvaise{2}
+          \mauvaise{7}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{_Category2}{
+      \begin{question}{question}
+        Que renvoie ce programme? 
+        \inputminted[firstline=1, lastline=5]{python}{codeFile_.py}
+      \begin{reponseshoriz}
+          \bonne{9}
+          \mauvaise{946}
+          \mauvaise{7}
+          \mauvaise{15}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
 
   \setgroupmode{_Category1}{cyclic}
   \shufflegroup{_Category1}

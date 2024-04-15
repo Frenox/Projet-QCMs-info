@@ -1,5 +1,5 @@
 def test(a):
-    b = 1
+    b = 3
     print(a*b) 
 
 test(3)

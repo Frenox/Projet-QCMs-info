@@ -37,12 +37,12 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
         formatedQuestionsList = []
         for i in range(len(answerLists)):
-            formatedQuestionsList.append(generate_question(f"codeFile_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
+            formatedQuestionsList.append(generate_question(f"fichier_code_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
             
         questionsDict = handleQuestionGroups(categoryList)
         categoryString = generate_category(questionName, questionsDict)
 
-        with open(f"{outputPath}/questionFile_{questionName}.txt", "w") as f:
+        with open(f"{outputPath}/fichier_question_{questionName}.txt", "w") as f:
             for question in formatedQuestionsList:
                 f.write(question + "\n") ## Ecrit chaque question dans le fichier Latex
             f.write(categoryString) ## Ecrit le groupe global des questions
@@ -51,7 +51,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
         for i in range(len(files)):
             if GUImode == "True":
                 outputFiles.append(f"{questionName}{i+1}{languageData[0]}") # pour le GUI
-            with open(f'{outputPath}/codeFile_{questionName}{i+1}{languageData[0]}', 'w') as f:
+            with open(f'{outputPath}/fichier_code_{questionName}{i+1}{languageData[0]}', 'w') as f:
                     f.write(files[i]) ## Cree le fichier contenant chaque code (pour affichage en latex)
                     f.close()
 

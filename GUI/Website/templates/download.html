@@ -2,12 +2,12 @@
     <p class="title is-4">
     Fichiers à télécharger:
     </p>
-    <a href="/static/download/questionFile_{{name}}.txt" download="questionFile_{{name}}.txt">
-        <button class="button is-link"> questionFile_{{name}}.txt </button>
+    <a href="/static/download/fichier_question_{{name}}.txt" download="fichier_question_{{name}}.txt">
+        <button class="button is-link"> fichier_question_{{name}}.txt </button>
     </a>
     {% for filename in outputs %}
-        <a href="/static/download/codeFile_{{filename}}" download="codeFile_{{filename}}">
-            <button class="button is-link"> codeFile_{{filename}} </button>
+        <a href="/static/download/fichier_code_{{filename}}" download="fichier_code_{{filename}}">
+            <button class="button is-link"> fichier_code_{{filename}} </button>
         </a>
     {% endfor %}
 </div>
