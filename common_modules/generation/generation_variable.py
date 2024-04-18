@@ -1,11 +1,33 @@
 from random import *
 
 mots = ["cerradlassopas","sopa","legume", "abeille", "agneau", "aile", "ane", "arbre", "bain", "barque", "bassin", "bebe", "bec", "bete", "boeuf", "botte de foin", "boue", "bouquet", "bourgeon", "branche", "caillou", "campagne", "car", "champ", "chariot", "chat", "cheminee", "cheval", "chevre", "chien", "cochon", "colline", "coq", "coquelicot", "crapaud", "cygne", "depart", "dindon", "escargot", "etang", "ferme", "fermier", "feuille", "flamme", "fleur", "fontaine", "fumee", "grain", "graine", "grenouille", "griffe", "guepe", "herbe", "herisson", "insecte", "jardin", "mare", "marguerite", "miel", "morceau de pain", "mouche", "mouton", "oie", "oiseau", "pierre", "pigeon", "plante", "plume", "poney", "poule", "poussin", "prairie", "rat", "riviere", "route", "tortue", "tracteur", "tulipe", "vache", "veterinaire", "Landry"]
-memoire = None
+
+memoire = None #garde en mémoire les résultats des fonctions entre balises
 
 
 def formatage_fichier(nom_fichier):
-    
+    ''' permetde remplacer sur un document texte le code entre les balises $
+        par ce que renvoie ce code
+
+        :paramètres:
+
+        nom_fichier : str : contient le nom du fichier texte que
+        l'on souhaite modifié
+
+        :variables:
+
+        symbole : str : contient le sybole des balises.
+        
+        insymbole : bool : indique True si le curseur de lecture
+        de la fonction est entre deux balises
+        
+        instruction : str : permet après lecture par la fonction
+        de stocker le contenu des balises.
+        
+        :return:
+
+        newcontenu : str : contient le texte modifié.    
+    '''
     global memoire
     with open(nom_fichier, "r") as fichier:
         contenu = fichier.read()
