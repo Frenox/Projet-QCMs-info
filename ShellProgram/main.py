@@ -9,6 +9,20 @@ from common_modules.generation import *
 from common_modules.execution import *
 
 def main(questionName, outputType, codeLanguage, filePath, executionPath, answerPath, questionType, GUImode):
+    """
+    Gere le fonctionnement general du programme et genere les fichiers utilises pour le QCM
+    Inputs:
+       questionName (str) : Nom de la question
+       outputType (str) : Format de rendu ('AMC' ou 'Moodle')
+       codeLanguage (str) : Cle du langage utilise (voir fichier 'donneesLangages.json')
+       filePath (str) : Chemin d'acces du fichier code
+       executionPath (str) : Chemin d'acces du fichier d'appels du code
+       answerPath (str) : Chemin d'acces du fichier contenant les reponses
+       questionType (str) : Type de question ('short' ou 'multi')  -- UNIQUEMENT REQUIS POUR LES QUESTIONS MOODLE --
+       GUImode (bool) : Activation ou non du mode interface graphique -- NON REQUIS --
+    Outputs:
+        outputFiles (list) : References des questions generees pour l'interface graphique
+    """
     languageData = list(getKnownLanguages()[codeLanguage].values()) ## Recupere les donnees associees au langage demande
     codeFile = formatage_fichier(filePath) ## Remplace les balises par du code dans le fichier donne
 
@@ -59,6 +73,15 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
     return outputFiles
 
 def handleCategories(questionName, executionFile):
+    """
+    Gere les categories des questions pour les fichiers utilses
+    Inputs:
+       questionName (str) : Nom de la question
+       executionFile (str) :Fichier d'appels du code sous forme de chaine de caracteres
+    Outputs:
+        categoryList (list) : Liste des categories (contient des repetitions pour avoir une association d'indices avec la liste suivante)
+        callsList (list) : Liste des appels du code pour chaque question
+    """
     lines = executionFile.split("\n")
 
     categoryList = []
@@ -77,6 +100,13 @@ def handleCategories(questionName, executionFile):
 
 
 def handleQuestionGroups(categoryList):
+    """
+    Gere les categories des questions pour les fichiers utilses
+    Inputs:
+       categoryList (list) : Liste contenant les categories (contient des repetitions pour avoir le nombre de questions par categorie)
+    Outputs:
+        questionsDict (dict) : Dictionnaire contenant le nombre de questions par categorie
+    """
     questionsDict = {}
     for category in categoryList:
         questionsDict[category] = questionsDict.get(category, 0) + 1
