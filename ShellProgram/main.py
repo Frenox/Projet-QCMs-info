@@ -1,7 +1,7 @@
 import os
 import sys
 import argparse
-
+import docker
 sys.path.append(os.path.abspath('..'))
 
 from common_modules.data import *
@@ -23,6 +23,8 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
     Outputs:
         outputFiles (list) : References des questions generees pour l'interface graphique
     """
+    Verification_docker()
+
     languageData = list(getKnownLanguages()[codeLanguage].values()) ## Recupere les donnees associees au langage demande
     codeFile = formatage_fichier(filePath) ## Remplace les balises par du code dans le fichier donne
 
@@ -112,6 +114,20 @@ def handleQuestionGroups(categoryList):
         questionsDict[category] = questionsDict.get(category, 0) + 1
     return questionsDict
 
+def Verification_docker():
+    """
+    Vérifie si Docker est en cours d'exécution en utilisant le module docker de Python.
+    """
+    client = docker.from_env()
+
+    try:
+        # Tentative de récupérer des informations sur Docker pour vérifier si le daemon est en cours d'exécution
+        client.ping()
+    except docker.errors.APIError as e:
+        print("Docker n'est pas en cours d'exécution. Erreur rencontrée:", e)
+        
+        print("Veuillez démarrer Docker manuellement.")
+        sys.exit(1)  # Quitte le programme si Docker n'est pas en cours d'exécution
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
