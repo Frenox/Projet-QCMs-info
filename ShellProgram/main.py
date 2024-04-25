@@ -57,7 +57,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
             
         questionsDict = handleQuestionGroups(categoryList)
         categoryString = ""
-        if outputFiles == "amc":
+        if outputType == "amc":
             categoryString = generate_category(questionName, questionsDict)
 
         with open(f"{outputPath}/fichier_question_{questionName}.tex", "w") as f:

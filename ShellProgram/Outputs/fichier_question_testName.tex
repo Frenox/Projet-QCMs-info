@@ -1,27 +1,57 @@
-\setsubcategory{testName_Category1}\begin{multi}
-      {fichier_code_testName1.py}
-      Que renvoie ce programme?
-      \inputminted{python}{fichier_code_testName1.py}
-            \item*20
-            \item25
-            \item4
-            \item946
-    \end{multi}
-\setsubcategory{testName_Category1}\begin{multi}
-      {fichier_code_testName2.py}
-      Que renvoie ce programme?
-      \inputminted{python}{fichier_code_testName2.py}
-            \item*32
-            \item4
-            \item25
-            \item946
-    \end{multi}
-\setsubcategory{testName_Category2}\begin{multi}
-      {fichier_code_testName3.py}
-      Que renvoie ce programme?
-      \inputminted{python}{fichier_code_testName3.py}
-            \item*12
-            \item7
-            \item2
-            \item25
-    \end{multi}
+
+    \element{testName_Category1}{
+      \begin{question}{fichier_code_testName1.py}
+        Que renvoie ce programme? 
+        \inputminted{python}{fichier_code_testName1.py}
+      \begin{reponseshoriz}
+          \bonne{10}
+          \mauvaise{4}
+          \mauvaise{2}
+          \mauvaise{6}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{testName_Category1}{
+      \begin{question}{fichier_code_testName2.py}
+        Que renvoie ce programme? 
+        \inputminted{python}{fichier_code_testName2.py}
+      \begin{reponseshoriz}
+          \bonne{16}
+          \mauvaise{946}
+          \mauvaise{4}
+          \mauvaise{7}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+    \element{testName_Category2}{
+      \begin{question}{fichier_code_testName3.py}
+        Que renvoie ce programme? 
+        \inputminted{python}{fichier_code_testName3.py}
+      \begin{reponseshoriz}
+          \bonne{6}
+          \mauvaise{2}
+          \mauvaise{10}
+          \mauvaise{25}
+        \end{reponseshoriz} 
+      \end{question}
+      }
+    
+
+  \setgroupmode{testName_Category1}{cyclic}
+  \shufflegroup{testName_Category1}
+  \element{testName}{
+  \restituegroupe[1]{testName_Category1}
+  }
+  \element{testName}{
+  \restituegroupe[1]{testName_Category1}
+  }
+  \setgroupmode{testName_Category2}{cyclic}
+  \shufflegroup{testName_Category2}
+  \element{testName}{
+  \restituegroupe[1]{testName_Category2}
+  }
+    
