@@ -56,7 +56,9 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
             formatedQuestionsList.append(generate_question(f"fichier_code_{questionName}{i+1}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
             
         questionsDict = handleQuestionGroups(categoryList)
-        categoryString = generate_category(questionName, questionsDict)
+        categoryString = ""
+        if outputFiles == "amc":
+            categoryString = generate_category(questionName, questionsDict)
 
         with open(f"{outputPath}/fichier_question_{questionName}.tex", "w") as f:
             for question in formatedQuestionsList:
