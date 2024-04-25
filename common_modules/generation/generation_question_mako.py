@@ -34,7 +34,8 @@ def generate_question(program,question,answers,typeOutput,typeMinted,category,ty
   elif typeOutput == "moodle":
     enonce = r'''\setsubcategory{''' + category + '}'
     main = r'''
-      {${question}}
+      {${programme}}
+      ${question}
       \inputminted{${langage}}{${programme}}
       % for elt in answers:
             ${elt}
