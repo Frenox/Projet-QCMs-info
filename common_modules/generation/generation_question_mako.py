@@ -77,5 +77,3 @@ def generate_category(name,categories):
     '''
   return Template(code).render(name = name,categories = categories )
 
-
-print(generate_question("test1.py","Que ?",["47"],"moodle","python","newCat","short"))
