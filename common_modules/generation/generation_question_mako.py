@@ -19,7 +19,7 @@ def generate_question(program,question,answers,typeOutput,typeMinted,category,ty
   if typeOutput == "amc":
     enonce = r'''
     \element{${category}}{
-      \begin{question}{question}
+      \begin{question}{${programme}}
         ${question} 
         \inputminted{${langage}}{${programme}}
       \begin{reponseshoriz}
@@ -78,3 +78,4 @@ def generate_category(name,categories):
   return Template(code).render(name = name,categories = categories )
 
 
+print(generate_question("test1.py","Que ?",["47"],"moodle","python","newCat","short"))
