@@ -53,7 +53,7 @@ def main(questionName, outputType, codeLanguage, filePath, executionPath, answer
 
         formatedQuestionsList = []
         for i in range(len(answerLists)):
-            formatedQuestionsList.append(generate_question(f"fichier_code_{questionName}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
+            formatedQuestionsList.append(generate_question(f"fichier_code_{questionName}{i}{languageData[0]}", "Que renvoie ce programme?", answerLists[i], outputType, mintedDisplayType, categoryList[i], questionType)) ## Genere le formattage de la question
             
         questionsDict = handleQuestionGroups(categoryList)
         categoryString = generate_category(questionName, questionsDict)

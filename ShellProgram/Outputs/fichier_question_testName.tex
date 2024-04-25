@@ -1,0 +1,42 @@
+\setsubcategory{testName_Category1}\begin{multi}
+      {fichier_code_testName0.py}
+      Que renvoie ce programme?
+      \inputminted{python}{fichier_code_testName0.py}
+            \item*40
+            \item2
+            \item64
+            \item24
+    \end{multi}
+\setsubcategory{testName_Category1}\begin{multi}
+      {fichier_code_testName1.py}
+      Que renvoie ce programme?
+      \inputminted{python}{fichier_code_testName1.py}
+            \item*64
+            \item2
+            \item7
+            \item40
+    \end{multi}
+\setsubcategory{testName_Category2}\begin{multi}
+      {fichier_code_testName2.py}
+      Que renvoie ce programme?
+      \inputminted{python}{fichier_code_testName2.py}
+            \item*24
+            \item40
+            \item2
+            \item7
+    \end{multi}
+
+  \setgroupmode{testName_Category1}{cyclic}
+  \shufflegroup{testName_Category1}
+  \element{testName}{
+  \restituegroupe[1]{testName_Category1}
+  }
+  \element{testName}{
+  \restituegroupe[1]{testName_Category1}
+  }
+  \setgroupmode{testName_Category2}{cyclic}
+  \shufflegroup{testName_Category2}
+  \element{testName}{
+  \restituegroupe[1]{testName_Category2}
+  }
+    
