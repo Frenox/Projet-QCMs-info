@@ -62,12 +62,28 @@ def formatage_fichier(nom_fichier):
 
 
 def gen_bool():
+    """
+    Genere aleatoirement un booleen
+    Inputs:
+       None
+    Outputs:
+        memoire (bool) : booleen genere
+    """
     global memoire
     memoire = choice((True,False))
     return memoire
 
 
 def gen_int(min = 1, max = 10, pas = 1):
+    """
+    Genere aleatoirement un entier entre les valeurs min et max avec un certain pas
+    Inputs:
+       min (int): entier minimum pouvant etre genere
+       max (int): entier maximum pouvant etre genere
+       pas (int): pas pour la generation des entiers
+    Outputs:
+        memoire (int) : entier genere
+    """
     assert isinstance(min,int) and isinstance(max,int) and isinstance(pas,int) , ""
     assert min < max , ""
     assert pas >= 0 , ""
@@ -78,7 +94,13 @@ def gen_int(min = 1, max = 10, pas = 1):
 
 
 def gen_str(liste_mots = mots):
-
+    """
+    Genere aleatoirement une chaine de caractere parmis une liste predefinie ou une liste donnee
+    Inputs:
+       liste_mots (liste): liste de str
+    Outputs:
+        memoire (str) : str genere
+    """
     assert isinstance(liste_mots,list) and len(liste_mots) > 0 , ""
     assert all(isinstance(mot,str) for mot in liste_mots) , ""
 
@@ -88,7 +110,16 @@ def gen_str(liste_mots = mots):
 
 
 def gen_liste_int(taille = 5, valeur_max = 100, repetition = False, tri = False):
-
+    """
+    Genere aleatoirement une liste d'entier
+    Inputs:
+       taille (int): taille de la liste
+       valeur_max (int): valeur maximale pour les entiers
+       repetition (bool): indique si la repetition des entiers est possible
+       tri (bool): indique si la liste doit etre triee
+    Outputs:
+        memoire (liste) : liste d'entier generee
+    """
     assert isinstance(taille,int) and isinstance(valeur_max,int)
     assert isinstance(repetition,int) and isinstance(tri,int)
 
@@ -109,13 +140,32 @@ def gen_liste_int(taille = 5, valeur_max = 100, repetition = False, tri = False)
 
 
 def gen_tuple_int(taille = 6, valeur_max = 100, repetition = False, tri = False):
+    """
+    Genere aleatoirement une tuple d'entier
+    Inputs:
+       taille (int): taille du tuple
+       valeur_max (int): valeur maximale pour les entiers
+       repetition (bool): indique si la repetition des entiers est possible
+       tri (bool): indique si le tuple doit etre trie
+    Outputs:
+        memoire (tupl) : tuple d'entier genere
+    """
     global memoire
     memoire = tuple(gen_liste_int(taille, valeur_max, repetition, tri))
     return memoire
 
 
 def gen_dict(taille = 6, valeur_max = 100, repetition = False, keys = mots):
-
+    """
+    Genere aleatoirement une dictionnaire avec pour cles des str et pour valeurs des entier
+    Inputs:
+       taille (int): taille ddictionnaire
+       valeur_max (int): valeur maximale pour les entiers
+       repetition (bool): indique si la repetition des entiers est possible
+       keys (list): liste de str pour les cles du dictionnaire
+    Outputs:
+        memoire (dict) : dictionnaire genere
+    """
     assert taille <= len(keys), "La taille est plus grande que le nombre de mots possibles"
 
     liste = gen_liste_int(taille, valeur_max, repetition)

@@ -1,6 +1,14 @@
 from random import *
 
 def rep(execution,path_reponse):
+    """
+    Renvoi une liste de liste, chaque sous-liste represente un question avec 4 reponses (la bonne reponse est en premiere position)
+    Inputs:
+       execution (list): liste contennant les executions du programme avec les differents appels
+       answerPath (str) : chemin d'acces du fichier contenant les mauvaises reponses
+    Outputs:
+        reponses (liste) : liste de liste representant les differentes questions
+    """
     reponses = []
 
     with open(path_reponse,"r") as fichier_reponses_prof:
